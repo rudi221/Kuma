@@ -16,7 +16,13 @@ namespace Kuma
         {
             InitializeComponent();
 
-            MinimumSize = new Size(1210, 900);
+            InitializeCustomControls();
+
+        }
+
+
+        private void InitializeCustomControls()
+        {
             ucMenu = new UcMenu();
             ucArtistData = new UcArtistData();
             ucAddressData = new UcAAddressData();
@@ -35,7 +41,8 @@ namespace Kuma
 
             pnlArtistFiles.Controls.Add(ucArtistFiles);
             ucArtistFiles.Dock = DockStyle.Fill;
-
         }
+
+
     }
 }
