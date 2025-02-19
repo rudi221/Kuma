@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmailSettings));
             tlpMain = new TableLayoutPanel();
             pnlField = new Panel();
-            tbxPassword = new TextBox();
+            txbPassword = new TextBox();
             lblPassword = new Label();
-            tbxUser = new TextBox();
+            txbUser = new TextBox();
             lblUser = new Label();
-            tbxServer = new TextBox();
+            txbServer = new TextBox();
             lblServer = new Label();
             pnlButtons = new Panel();
             btnCancel = new Button();
@@ -68,11 +68,11 @@
             // pnlField
             // 
             pnlField.BackColor = SystemColors.Control;
-            pnlField.Controls.Add(tbxPassword);
+            pnlField.Controls.Add(txbPassword);
             pnlField.Controls.Add(lblPassword);
-            pnlField.Controls.Add(tbxUser);
+            pnlField.Controls.Add(txbUser);
             pnlField.Controls.Add(lblUser);
-            pnlField.Controls.Add(tbxServer);
+            pnlField.Controls.Add(txbServer);
             pnlField.Controls.Add(lblServer);
             pnlField.Dock = DockStyle.Fill;
             pnlField.Location = new Point(15, 15);
@@ -81,13 +81,13 @@
             pnlField.Size = new Size(318, 126);
             pnlField.TabIndex = 0;
             // 
-            // tbxPassword
+            // txbPassword
             // 
-            tbxPassword.Location = new Point(99, 77);
-            tbxPassword.Name = "tbxPassword";
-            tbxPassword.PasswordChar = '*';
-            tbxPassword.Size = new Size(169, 23);
-            tbxPassword.TabIndex = 5;
+            txbPassword.Location = new Point(99, 77);
+            txbPassword.Name = "txbPassword";
+            txbPassword.PasswordChar = '*';
+            txbPassword.Size = new Size(169, 23);
+            txbPassword.TabIndex = 5;
             // 
             // lblPassword
             // 
@@ -98,12 +98,12 @@
             lblPassword.TabIndex = 4;
             lblPassword.Text = "Passwort";
             // 
-            // tbxUser
+            // txbUser
             // 
-            tbxUser.Location = new Point(99, 48);
-            tbxUser.Name = "tbxUser";
-            tbxUser.Size = new Size(169, 23);
-            tbxUser.TabIndex = 3;
+            txbUser.Location = new Point(99, 48);
+            txbUser.Name = "txbUser";
+            txbUser.Size = new Size(169, 23);
+            txbUser.TabIndex = 3;
             // 
             // lblUser
             // 
@@ -115,12 +115,12 @@
             lblUser.Text = "Benutzer";
             lblUser.TextAlign = ContentAlignment.TopCenter;
             // 
-            // tbxServer
+            // txbServer
             // 
-            tbxServer.Location = new Point(99, 19);
-            tbxServer.Name = "tbxServer";
-            tbxServer.Size = new Size(169, 23);
-            tbxServer.TabIndex = 1;
+            txbServer.Location = new Point(99, 19);
+            txbServer.Name = "txbServer";
+            txbServer.Size = new Size(169, 23);
+            txbServer.TabIndex = 1;
             // 
             // lblServer
             // 
@@ -186,11 +186,11 @@
         private Panel pnlField;
         private Panel pnlButtons;
         private Label lblServer;
-        private TextBox tbxPassword;
+        private TextBox txbPassword;
         private Label lblPassword;
-        private TextBox tbxUser;
+        private TextBox txbUser;
         private Label lblUser;
-        private TextBox tbxServer;
+        private TextBox txbServer;
         private Button btnCancel;
         private Button btnUpdate;
     }

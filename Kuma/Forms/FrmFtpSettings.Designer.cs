@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFtpSettings));
             tlpMain = new TableLayoutPanel();
             pnlField = new Panel();
-            tbxFolder = new TextBox();
+            txbFolder = new TextBox();
             lblFolder = new Label();
-            tbxPassword = new TextBox();
+            txbPassword = new TextBox();
             lblPassword = new Label();
-            tbxUser = new TextBox();
+            txbUser = new TextBox();
             lblUser = new Label();
-            tbxServer = new TextBox();
+            txbServer = new TextBox();
             lblServer = new Label();
             pnlButtons = new Panel();
             btnCancel = new Button();
@@ -71,13 +71,13 @@
             // pnlField
             // 
             pnlField.BackColor = SystemColors.Control;
-            pnlField.Controls.Add(tbxFolder);
+            pnlField.Controls.Add(txbFolder);
             pnlField.Controls.Add(lblFolder);
-            pnlField.Controls.Add(tbxPassword);
+            pnlField.Controls.Add(txbPassword);
             pnlField.Controls.Add(lblPassword);
-            pnlField.Controls.Add(tbxUser);
+            pnlField.Controls.Add(txbUser);
             pnlField.Controls.Add(lblUser);
-            pnlField.Controls.Add(tbxServer);
+            pnlField.Controls.Add(txbServer);
             pnlField.Controls.Add(lblServer);
             pnlField.Dock = DockStyle.Fill;
             pnlField.Location = new Point(15, 15);
@@ -86,12 +86,12 @@
             pnlField.Size = new Size(319, 168);
             pnlField.TabIndex = 0;
             // 
-            // tbxFolder
+            // txbFolder
             // 
-            tbxFolder.Location = new Point(108, 114);
-            tbxFolder.Name = "tbxFolder";
-            tbxFolder.Size = new Size(169, 23);
-            tbxFolder.TabIndex = 7;
+            txbFolder.Location = new Point(108, 114);
+            txbFolder.Name = "txbFolder";
+            txbFolder.Size = new Size(169, 23);
+            txbFolder.TabIndex = 7;
             // 
             // lblFolder
             // 
@@ -102,13 +102,13 @@
             lblFolder.TabIndex = 6;
             lblFolder.Text = "Verzeichnis";
             // 
-            // tbxPassword
+            // txbPassword
             // 
-            tbxPassword.Location = new Point(108, 85);
-            tbxPassword.Name = "tbxPassword";
-            tbxPassword.PasswordChar = '*';
-            tbxPassword.Size = new Size(169, 23);
-            tbxPassword.TabIndex = 5;
+            txbPassword.Location = new Point(108, 85);
+            txbPassword.Name = "txbPassword";
+            txbPassword.PasswordChar = '*';
+            txbPassword.Size = new Size(169, 23);
+            txbPassword.TabIndex = 5;
             // 
             // lblPassword
             // 
@@ -119,12 +119,12 @@
             lblPassword.TabIndex = 4;
             lblPassword.Text = "Passwort";
             // 
-            // tbxUser
+            // txbUser
             // 
-            tbxUser.Location = new Point(108, 56);
-            tbxUser.Name = "tbxUser";
-            tbxUser.Size = new Size(169, 23);
-            tbxUser.TabIndex = 3;
+            txbUser.Location = new Point(108, 56);
+            txbUser.Name = "txbUser";
+            txbUser.Size = new Size(169, 23);
+            txbUser.TabIndex = 3;
             // 
             // lblUser
             // 
@@ -136,12 +136,12 @@
             lblUser.Text = "Benutzer";
             lblUser.TextAlign = ContentAlignment.TopCenter;
             // 
-            // tbxServer
+            // txbServer
             // 
-            tbxServer.Location = new Point(108, 27);
-            tbxServer.Name = "tbxServer";
-            tbxServer.Size = new Size(169, 23);
-            tbxServer.TabIndex = 1;
+            txbServer.Location = new Point(108, 27);
+            txbServer.Name = "txbServer";
+            txbServer.Size = new Size(169, 23);
+            txbServer.TabIndex = 1;
             // 
             // lblServer
             // 
@@ -204,13 +204,13 @@
 
         private TableLayoutPanel tlpMain;
         private Panel pnlField;
-        private TextBox tbxFolder;
+        private TextBox txbFolder;
         private Label lblFolder;
-        private TextBox tbxPassword;
+        private TextBox txbPassword;
         private Label lblPassword;
-        private TextBox tbxUser;
+        private TextBox txbUser;
         private Label lblUser;
-        private TextBox tbxServer;
+        private TextBox txbServer;
         private Label lblServer;
         private Panel pnlButtons;
         private Button btnCancel;
