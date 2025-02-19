@@ -28,17 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ltvArtistFiles = new ListView();
             SuspendLayout();
+            // 
+            // ltvArtistFiles
+            // 
+            ltvArtistFiles.Dock = DockStyle.Fill;
+            ltvArtistFiles.Location = new Point(0, 0);
+            ltvArtistFiles.Name = "ltvArtistFiles";
+            ltvArtistFiles.Size = new Size(341, 566);
+            ltvArtistFiles.TabIndex = 0;
+            ltvArtistFiles.UseCompatibleStateImageBehavior = false;
             // 
             // UcArtistFiles
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(ltvArtistFiles);
             Name = "UcArtistFiles";
             Size = new Size(341, 566);
             ResumeLayout(false);
         }
 
         #endregion
+
+        private ListView ltvArtistFiles;
     }
 }
