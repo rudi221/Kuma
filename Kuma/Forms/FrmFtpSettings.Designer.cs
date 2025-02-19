@@ -38,6 +38,7 @@
             ClientSize = new Size(349, 213);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmFtpSettings";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FtpEinstellungen";
             ResumeLayout(false);
         }

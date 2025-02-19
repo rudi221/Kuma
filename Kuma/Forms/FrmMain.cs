@@ -1,4 +1,5 @@
 using Kuma.Controls;
+using Kuma.Forms;
 
 namespace Kuma
 {
@@ -57,17 +58,20 @@ namespace Kuma
 
         private void tsmKategorieItem_Click(object sender, EventArgs e)
         {
-
+            FrmCategories frmCategories = new FrmCategories();
+            frmCategories.ShowDialog();
         }
 
         private void tsmEmailItem_Click(object sender, EventArgs e)
         {
-
+            FrmEmailSettings frmEmailSettings = new FrmEmailSettings();
+            frmEmailSettings.ShowDialog();
         }
 
         private void tsmFtpItem_Click(object sender, EventArgs e)
         {
-
+            FrmFtpSettings frmFtpSettings = new FrmFtpSettings();
+            frmFtpSettings.ShowDialog();
         }
 
 

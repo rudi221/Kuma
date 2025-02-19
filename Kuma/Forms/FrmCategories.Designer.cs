@@ -28,10 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FrmCategories";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategories));
+            SuspendLayout();
+            // 
+            // FrmCategories
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(762, 338);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "FrmCategories";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Kategorie Liste";
+            ResumeLayout(false);
         }
 
         #endregion
