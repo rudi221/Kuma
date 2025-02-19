@@ -40,10 +40,10 @@
             tlpMain = new TableLayoutPanel();
             tlpData = new TableLayoutPanel();
             tplArtistData = new TableLayoutPanel();
-            pnlMenu = new Panel();
-            pnlArtistFiles = new Panel();
             pnlAddress = new Panel();
             pnlArtistData = new Panel();
+            pnlArtistFiles = new Panel();
+            pnlMenu = new Panel();
             menuStrip1.SuspendLayout();
             tlpMain.SuspendLayout();
             tlpData.SuspendLayout();
@@ -55,7 +55,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { tsmProgramm, tsmSettings });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(804, 24);
+            menuStrip1.Size = new Size(1194, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -99,9 +99,9 @@
             // 
             // statusStrip1
             // 
-            statusStrip1.Location = new Point(0, 429);
+            statusStrip1.Location = new Point(0, 839);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(804, 22);
+            statusStrip1.Size = new Size(1194, 22);
             statusStrip1.TabIndex = 1;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -118,11 +118,11 @@
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 5;
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 75F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpMain.Size = new Size(804, 405);
+            tlpMain.Size = new Size(1194, 815);
             tlpMain.TabIndex = 2;
             // 
             // tlpData
@@ -134,13 +134,13 @@
             tlpData.Controls.Add(tplArtistData, 0, 0);
             tlpData.Controls.Add(pnlArtistFiles, 2, 0);
             tlpData.Dock = DockStyle.Fill;
-            tlpData.Location = new Point(20, 126);
+            tlpData.Location = new Point(20, 153);
             tlpData.Margin = new Padding(0);
             tlpData.Name = "tlpData";
             tlpData.RowCount = 1;
             tlpData.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpData.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpData.Size = new Size(764, 258);
+            tlpData.Size = new Size(1154, 641);
             tlpData.TabIndex = 0;
             // 
             // tplArtistData
@@ -158,28 +158,8 @@
             tplArtistData.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tplArtistData.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tplArtistData.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
-            tplArtistData.Size = new Size(520, 258);
+            tplArtistData.Size = new Size(793, 641);
             tplArtistData.TabIndex = 0;
-            // 
-            // pnlMenu
-            // 
-            pnlMenu.BackColor = SystemColors.Control;
-            pnlMenu.Dock = DockStyle.Fill;
-            pnlMenu.Location = new Point(20, 20);
-            pnlMenu.Margin = new Padding(0);
-            pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(764, 86);
-            pnlMenu.TabIndex = 1;
-            // 
-            // pnlArtistFiles
-            // 
-            pnlArtistFiles.BackColor = SystemColors.Control;
-            pnlArtistFiles.Dock = DockStyle.Fill;
-            pnlArtistFiles.Location = new Point(540, 0);
-            pnlArtistFiles.Margin = new Padding(0);
-            pnlArtistFiles.Name = "pnlArtistFiles";
-            pnlArtistFiles.Size = new Size(224, 258);
-            pnlArtistFiles.TabIndex = 1;
             // 
             // pnlAddress
             // 
@@ -188,25 +168,45 @@
             pnlAddress.Location = new Point(0, 0);
             pnlAddress.Margin = new Padding(0);
             pnlAddress.Name = "pnlAddress";
-            pnlAddress.Size = new Size(520, 71);
+            pnlAddress.Size = new Size(793, 186);
             pnlAddress.TabIndex = 0;
             // 
             // pnlArtistData
             // 
             pnlArtistData.BackColor = SystemColors.Control;
             pnlArtistData.Dock = DockStyle.Fill;
-            pnlArtistData.Location = new Point(0, 91);
+            pnlArtistData.Location = new Point(0, 206);
             pnlArtistData.Margin = new Padding(0);
             pnlArtistData.Name = "pnlArtistData";
-            pnlArtistData.Size = new Size(520, 167);
+            pnlArtistData.Size = new Size(793, 435);
             pnlArtistData.TabIndex = 1;
+            // 
+            // pnlArtistFiles
+            // 
+            pnlArtistFiles.BackColor = SystemColors.Control;
+            pnlArtistFiles.Dock = DockStyle.Fill;
+            pnlArtistFiles.Location = new Point(813, 0);
+            pnlArtistFiles.Margin = new Padding(0);
+            pnlArtistFiles.Name = "pnlArtistFiles";
+            pnlArtistFiles.Size = new Size(341, 641);
+            pnlArtistFiles.TabIndex = 1;
+            // 
+            // pnlMenu
+            // 
+            pnlMenu.BackColor = SystemColors.Control;
+            pnlMenu.Dock = DockStyle.Fill;
+            pnlMenu.Location = new Point(20, 20);
+            pnlMenu.Margin = new Padding(0);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(1154, 113);
+            pnlMenu.TabIndex = 1;
             // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(804, 451);
+            ClientSize = new Size(1194, 861);
             Controls.Add(tlpMain);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
