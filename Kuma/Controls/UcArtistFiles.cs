@@ -18,6 +18,15 @@
         #endregion
 
         #region Methoden
+
+        public void FillArtistFileListView()
+        {
+            MessageBox.Show("LoadArtistFile");
+
+        }
+
+
+
         #endregion
     }
 }

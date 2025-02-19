@@ -1,14 +1,20 @@
-﻿namespace Kuma.Forms
+﻿using Kuma.Controls;
+
+namespace Kuma.Forms
 {
     public partial class FrmAddArtistFile : Form
     {
-        #region Deklarationen   
+        #region Deklarationen  
+
+        private UcArtistFiles ucArtistFile;
         #endregion
 
         #region Konstruktor 
-        public FrmAddArtistFile()
+        public FrmAddArtistFile(UcArtistFiles ucArtistFile)
         {
             InitializeComponent();
+
+            this.ucArtistFile = ucArtistFile;
         }
 
         #endregion
@@ -23,6 +29,8 @@
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             Close();
+
+            ucArtistFile.FillArtistFileListView();
         }
 
         private void btnOpenFileDialog_Click(object sender, EventArgs e)

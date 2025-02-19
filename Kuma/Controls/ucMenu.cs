@@ -23,7 +23,7 @@ namespace Kuma.Controls
 
         private void btnAddArtistFile_Click(object sender, EventArgs e)
         {
-            FrmAddArtistFile frmAddArtistFile = new FrmAddArtistFile();
+            FrmAddArtistFile frmAddArtistFile = new FrmAddArtistFile(ucArtistFiles);
             frmAddArtistFile.ShowDialog();
         }
         #endregion
