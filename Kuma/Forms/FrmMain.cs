@@ -5,13 +5,16 @@ namespace Kuma
     public partial class FrmMain : Form
     {
 
+        #region Deklaration
+
         private UcMenu ucMenu;
         private UcArtistData ucArtistData;
         private UcAAddressData ucAddressData;
         private UcArtistFiles ucArtistFiles;
 
+        #endregion
 
-
+        #region Konstruktor
         public FrmMain()
         {
             InitializeComponent();
@@ -19,8 +22,10 @@ namespace Kuma
             InitializeCustomControls();
 
         }
+        #endregion
 
 
+        #region Methoden
         private void InitializeCustomControls()
         {
             ucMenu = new UcMenu();
@@ -42,6 +47,7 @@ namespace Kuma
             pnlArtistFiles.Controls.Add(ucArtistFiles);
             ucArtistFiles.Dock = DockStyle.Fill;
         }
+        #endregion
 
 
     }
