@@ -12,6 +12,7 @@ namespace Kuma
         private UcArtistData ucArtistData;
         private UcAAddressData ucAddressData;
         private UcArtistFiles ucArtistFiles;
+        private UcArtistSearch ucArtistSearch;
 
         #endregion
 
@@ -32,6 +33,7 @@ namespace Kuma
             ucArtistData = new UcArtistData();
             ucAddressData = new UcAAddressData();
             ucArtistFiles = new UcArtistFiles();
+            ucArtistSearch = new UcArtistSearch();
 
             ucMenu.Initialize(ucArtistData, ucArtistFiles);
 
@@ -46,6 +48,9 @@ namespace Kuma
 
             pnlArtistFiles.Controls.Add(ucArtistFiles);
             ucArtistFiles.Dock = DockStyle.Fill;
+
+            pnlArtistSearch.Controls.Add(ucArtistSearch);
+            ucArtistSearch.Dock = DockStyle.Fill;
         }
         #endregion
 
