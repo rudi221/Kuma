@@ -1,4 +1,7 @@
 ﻿using Kuma.Controls;
+using Kuma.Models;
+
+
 
 namespace Kuma.Forms
 {
@@ -7,6 +10,7 @@ namespace Kuma.Forms
         #region Deklarationen
 
         private UcArtistData ucArtistData;
+
         #endregion
 
         #region Konstruktor
@@ -28,18 +32,31 @@ namespace Kuma.Forms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            ucArtistData.FillArtistDataView();
+
+            ArtistInfo artist = GetArtistFromForm();
+
+            ucArtistData.InsertArtistDataFromForm(artist);
 
             Close();
         }
+
+
+        private ArtistInfo GetArtistFromForm()
+        {
+            return new ArtistInfo
+            {
+                ArtistID = 0,
+                ArtistName = tbxArtist.Text,
+                TourName = tbxTour.Text,
+            };
+        }
+
+
+
         #endregion
-
-        #region Methoden
-        #endregion
-
-
 
 
 
     }
+
 }

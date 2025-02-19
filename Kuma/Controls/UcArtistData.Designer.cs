@@ -34,10 +34,13 @@
             // 
             // dgvArtist
             // 
+            dgvArtist.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvArtist.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvArtist.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvArtist.Dock = DockStyle.Fill;
             dgvArtist.Location = new Point(0, 0);
             dgvArtist.Name = "dgvArtist";
+            dgvArtist.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvArtist.Size = new Size(793, 383);
             dgvArtist.TabIndex = 0;
             // 

@@ -36,7 +36,7 @@ namespace Kuma.Controls
 
                 try
                 {
-                    ucArtistData.FillArtistDataView();
+
                 }
                 catch (Exception ex)
                 {

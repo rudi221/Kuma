@@ -35,7 +35,7 @@ namespace Kuma
 
         private void LoadArtistData()
         {
-            ucArtistData.FillArtistDataView();
+            ucArtistData.LoadArtistData();
         }
 
 
