@@ -24,7 +24,6 @@ namespace Kuma
         }
         #endregion
 
-
         #region Methoden
         private void InitializeCustomControls()
         {
@@ -48,6 +47,33 @@ namespace Kuma
             ucArtistFiles.Dock = DockStyle.Fill;
         }
         #endregion
+
+        #region Event Handlers for Buttons
+
+        private void tsmCloseItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void tsmKategorieItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmEmailItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmFtpItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        #endregion
+
 
 
     }

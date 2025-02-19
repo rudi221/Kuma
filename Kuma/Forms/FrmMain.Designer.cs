@@ -69,8 +69,9 @@
             // tsmCloseItem
             // 
             tsmCloseItem.Name = "tsmCloseItem";
-            tsmCloseItem.Size = new Size(125, 22);
+            tsmCloseItem.Size = new Size(180, 22);
             tsmCloseItem.Text = "Schließen";
+            tsmCloseItem.Click += tsmCloseItem_Click;
             // 
             // tsmSettings
             // 
@@ -82,20 +83,23 @@
             // tsmKategorieItem
             // 
             tsmKategorieItem.Name = "tsmKategorieItem";
-            tsmKategorieItem.Size = new Size(124, 22);
+            tsmKategorieItem.Size = new Size(180, 22);
             tsmKategorieItem.Text = "Kategorie";
+            tsmKategorieItem.Click += tsmKategorieItem_Click;
             // 
             // tsmEmailItem
             // 
             tsmEmailItem.Name = "tsmEmailItem";
-            tsmEmailItem.Size = new Size(124, 22);
+            tsmEmailItem.Size = new Size(180, 22);
             tsmEmailItem.Text = "E-Mail";
+            tsmEmailItem.Click += tsmEmailItem_Click;
             // 
             // tsmFtpItem
             // 
             tsmFtpItem.Name = "tsmFtpItem";
-            tsmFtpItem.Size = new Size(124, 22);
+            tsmFtpItem.Size = new Size(180, 22);
             tsmFtpItem.Text = "FTP";
+            tsmFtpItem.Click += tsmFtpItem_Click;
             // 
             // statusStrip1
             // 
