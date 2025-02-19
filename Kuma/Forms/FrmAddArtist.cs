@@ -1,15 +1,20 @@
-﻿namespace Kuma.Forms
+﻿using Kuma.Controls;
+
+namespace Kuma.Forms
 {
     public partial class FrmAddArtist : Form
     {
         #region Deklarationen
 
+        private UcArtistData ucArtistData;
         #endregion
 
         #region Konstruktor
-        public FrmAddArtist()
+        public FrmAddArtist(UcArtistData ucArtistData)
         {
             InitializeComponent();
+
+            this.ucArtistData = ucArtistData;
         }
 
         #endregion
@@ -23,6 +28,8 @@
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            ucArtistData.FillDataView();
+
             Close();
         }
         #endregion

@@ -23,10 +23,23 @@ namespace Kuma
 
             InitializeCustomControls();
 
+            LoadArtistData();
+
         }
+
+
         #endregion
 
         #region Methoden
+
+
+        private void LoadArtistData()
+        {
+            ucArtistData.FillDataView();
+        }
+
+
+
         private void InitializeCustomControls()
         {
             ucMenu = new UcMenu();

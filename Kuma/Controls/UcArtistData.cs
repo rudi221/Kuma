@@ -22,6 +22,15 @@
         #endregion
 
         #region Methoden
+
+        public void FillDataView()
+        {
+            MessageBox.Show("LoadData");
+
+        }
+
+
+
         #endregion
     }
 }

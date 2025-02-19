@@ -17,7 +17,7 @@ namespace Kuma.Controls
 
         private void btnAddArtist_Click(object sender, EventArgs e)
         {
-            FrmAddArtist frmAddArtist = new FrmAddArtist();
+            FrmAddArtist frmAddArtist = new FrmAddArtist(ucArtistData);
             frmAddArtist.ShowDialog();
         }
 
