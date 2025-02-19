@@ -1,6 +1,6 @@
 ﻿namespace Kuma.Controls
 {
-    partial class ucMenu
+    partial class UcMenu
     {
         /// <summary> 
         /// Erforderliche Designervariable.

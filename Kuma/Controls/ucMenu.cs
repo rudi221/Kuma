@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Kuma.Controls
 {
-    public partial class ucMenu: UserControl
+    public partial class UcMenu: UserControl
     {
-        public ucMenu()
+        public UcMenu()
         {
             InitializeComponent();
         }
