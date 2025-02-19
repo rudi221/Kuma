@@ -2,9 +2,22 @@
 {
     public partial class UcArtistFiles : UserControl
     {
+        #region Deklaration
+
+        #endregion
+
+        #region Konstruktor
         public UcArtistFiles()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Event Handlers for Buttons
+        #endregion
+
+        #region Methoden
+        #endregion
     }
 }
