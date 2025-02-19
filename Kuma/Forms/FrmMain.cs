@@ -22,6 +22,8 @@ namespace Kuma
             ucAddressData = new UcAAddressData();
             ucArtistFiles = new UcArtistFiles();
 
+            ucMenu.Initialize(ucArtistData, ucArtistFiles);
+
             pnlMenu.Controls.Add(ucMenu);
             ucMenu.Dock = DockStyle.Fill;
 
