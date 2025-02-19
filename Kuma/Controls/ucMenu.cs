@@ -1,4 +1,6 @@
-﻿namespace Kuma.Controls
+﻿using Kuma.Forms;
+
+namespace Kuma.Controls
 {
     public partial class UcMenu : UserControl
     {
@@ -14,6 +16,18 @@
         {
             this.ucArtistData = ucArtistData;
             this.ucArtistFiles = ucArtistFiles;
+        }
+
+        private void btnAddArtist_Click(object sender, EventArgs e)
+        {
+            FrmAddArtist frmAddArtist = new FrmAddArtist();
+            frmAddArtist.ShowDialog();
+        }
+
+        private void btnAddArtistFile_Click(object sender, EventArgs e)
+        {
+            FrmAddArtistFile frmAddArtistFile = new FrmAddArtistFile();
+            frmAddArtistFile.ShowDialog();
         }
     }
 }

@@ -45,6 +45,7 @@
             btnAddArtist.Text = "Neu";
             btnAddArtist.TextImageRelation = TextImageRelation.ImageAboveText;
             btnAddArtist.UseVisualStyleBackColor = true;
+            btnAddArtist.Click += btnAddArtist_Click;
             // 
             // btnDeleteArtist
             // 
@@ -89,6 +90,7 @@
             btnAddArtistFile.Text = "Neu";
             btnAddArtistFile.TextImageRelation = TextImageRelation.ImageAboveText;
             btnAddArtistFile.UseVisualStyleBackColor = true;
+            btnAddArtistFile.Click += btnAddArtistFile_Click;
             // 
             // UcMenu
             // 
