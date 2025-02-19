@@ -5,6 +5,8 @@ namespace Kuma
         public FrmMain()
         {
             InitializeComponent();
+
+            MinimumSize = new Size(1210, 900);
         }
     }
 }

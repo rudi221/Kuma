@@ -30,15 +30,24 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             menuStrip1 = new MenuStrip();
-            statusStrip1 = new StatusStrip();
             tsmProgramm = new ToolStripMenuItem();
             tsmCloseItem = new ToolStripMenuItem();
             tsmSettings = new ToolStripMenuItem();
             tsmKategorieItem = new ToolStripMenuItem();
             tsmEmailItem = new ToolStripMenuItem();
             tsmFtpItem = new ToolStripMenuItem();
+            statusStrip1 = new StatusStrip();
             tlpMain = new TableLayoutPanel();
+            tlpData = new TableLayoutPanel();
+            tplArtistData = new TableLayoutPanel();
+            pnlMenu = new Panel();
+            pnlArtistFiles = new Panel();
+            pnlAddress = new Panel();
+            pnlArtistData = new Panel();
             menuStrip1.SuspendLayout();
+            tlpMain.SuspendLayout();
+            tlpData.SuspendLayout();
+            tplArtistData.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -50,14 +59,6 @@
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // statusStrip1
-            // 
-            statusStrip1.Location = new Point(0, 429);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(804, 22);
-            statusStrip1.TabIndex = 1;
-            statusStrip1.Text = "statusStrip1";
-            // 
             // tsmProgramm
             // 
             tsmProgramm.DropDownItems.AddRange(new ToolStripItem[] { tsmCloseItem });
@@ -68,7 +69,7 @@
             // tsmCloseItem
             // 
             tsmCloseItem.Name = "tsmCloseItem";
-            tsmCloseItem.Size = new Size(180, 22);
+            tsmCloseItem.Size = new Size(125, 22);
             tsmCloseItem.Text = "Schließen";
             // 
             // tsmSettings
@@ -81,20 +82,28 @@
             // tsmKategorieItem
             // 
             tsmKategorieItem.Name = "tsmKategorieItem";
-            tsmKategorieItem.Size = new Size(180, 22);
+            tsmKategorieItem.Size = new Size(124, 22);
             tsmKategorieItem.Text = "Kategorie";
             // 
             // tsmEmailItem
             // 
             tsmEmailItem.Name = "tsmEmailItem";
-            tsmEmailItem.Size = new Size(180, 22);
+            tsmEmailItem.Size = new Size(124, 22);
             tsmEmailItem.Text = "E-Mail";
             // 
             // tsmFtpItem
             // 
             tsmFtpItem.Name = "tsmFtpItem";
-            tsmFtpItem.Size = new Size(180, 22);
+            tsmFtpItem.Size = new Size(124, 22);
             tsmFtpItem.Text = "FTP";
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Location = new Point(0, 429);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(804, 22);
+            statusStrip1.TabIndex = 1;
+            statusStrip1.Text = "statusStrip1";
             // 
             // tlpMain
             // 
@@ -102,6 +111,8 @@
             tlpMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tlpMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tlpMain.Controls.Add(tlpData, 1, 3);
+            tlpMain.Controls.Add(pnlMenu, 1, 1);
             tlpMain.Dock = DockStyle.Fill;
             tlpMain.Location = new Point(0, 24);
             tlpMain.Name = "tlpMain";
@@ -113,6 +124,82 @@
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpMain.Size = new Size(804, 405);
             tlpMain.TabIndex = 2;
+            // 
+            // tlpData
+            // 
+            tlpData.ColumnCount = 3;
+            tlpData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tlpData.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tlpData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tlpData.Controls.Add(tplArtistData, 0, 0);
+            tlpData.Controls.Add(pnlArtistFiles, 2, 0);
+            tlpData.Dock = DockStyle.Fill;
+            tlpData.Location = new Point(20, 126);
+            tlpData.Margin = new Padding(0);
+            tlpData.Name = "tlpData";
+            tlpData.RowCount = 1;
+            tlpData.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpData.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpData.Size = new Size(764, 258);
+            tlpData.TabIndex = 0;
+            // 
+            // tplArtistData
+            // 
+            tplArtistData.ColumnCount = 1;
+            tplArtistData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tplArtistData.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tplArtistData.Controls.Add(pnlAddress, 0, 0);
+            tplArtistData.Controls.Add(pnlArtistData, 0, 2);
+            tplArtistData.Dock = DockStyle.Fill;
+            tplArtistData.Location = new Point(0, 0);
+            tplArtistData.Margin = new Padding(0);
+            tplArtistData.Name = "tplArtistData";
+            tplArtistData.RowCount = 3;
+            tplArtistData.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            tplArtistData.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tplArtistData.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
+            tplArtistData.Size = new Size(520, 258);
+            tplArtistData.TabIndex = 0;
+            // 
+            // pnlMenu
+            // 
+            pnlMenu.BackColor = SystemColors.Control;
+            pnlMenu.Dock = DockStyle.Fill;
+            pnlMenu.Location = new Point(20, 20);
+            pnlMenu.Margin = new Padding(0);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(764, 86);
+            pnlMenu.TabIndex = 1;
+            // 
+            // pnlArtistFiles
+            // 
+            pnlArtistFiles.BackColor = SystemColors.Control;
+            pnlArtistFiles.Dock = DockStyle.Fill;
+            pnlArtistFiles.Location = new Point(540, 0);
+            pnlArtistFiles.Margin = new Padding(0);
+            pnlArtistFiles.Name = "pnlArtistFiles";
+            pnlArtistFiles.Size = new Size(224, 258);
+            pnlArtistFiles.TabIndex = 1;
+            // 
+            // pnlAddress
+            // 
+            pnlAddress.BackColor = SystemColors.Control;
+            pnlAddress.Dock = DockStyle.Fill;
+            pnlAddress.Location = new Point(0, 0);
+            pnlAddress.Margin = new Padding(0);
+            pnlAddress.Name = "pnlAddress";
+            pnlAddress.Size = new Size(520, 71);
+            pnlAddress.TabIndex = 0;
+            // 
+            // pnlArtistData
+            // 
+            pnlArtistData.BackColor = SystemColors.Control;
+            pnlArtistData.Dock = DockStyle.Fill;
+            pnlArtistData.Location = new Point(0, 91);
+            pnlArtistData.Margin = new Padding(0);
+            pnlArtistData.Name = "pnlArtistData";
+            pnlArtistData.Size = new Size(520, 167);
+            pnlArtistData.TabIndex = 1;
             // 
             // FrmMain
             // 
@@ -129,6 +216,9 @@
             Text = "Kuma";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            tlpMain.ResumeLayout(false);
+            tlpData.ResumeLayout(false);
+            tplArtistData.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -144,5 +234,11 @@
         private ToolStripMenuItem tsmEmailItem;
         private ToolStripMenuItem tsmFtpItem;
         private TableLayoutPanel tlpMain;
+        private TableLayoutPanel tlpData;
+        private TableLayoutPanel tplArtistData;
+        private Panel pnlAddress;
+        private Panel pnlArtistFiles;
+        private Panel pnlMenu;
+        private Panel pnlArtistData;
     }
 }
