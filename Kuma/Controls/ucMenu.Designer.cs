@@ -31,7 +31,7 @@
             btnAddArtist = new Button();
             btnDeleteArtist = new Button();
             btnSendData = new Button();
-            button1 = new Button();
+            btnDeleteArtistFile = new Button();
             btnAddArtistFile = new Button();
             SuspendLayout();
             // 
@@ -57,6 +57,7 @@
             btnDeleteArtist.Text = "Löschen";
             btnDeleteArtist.TextImageRelation = TextImageRelation.ImageAboveText;
             btnDeleteArtist.UseVisualStyleBackColor = true;
+            btnDeleteArtist.Click += btnDeleteArtist_Click;
             // 
             // btnSendData
             // 
@@ -69,16 +70,17 @@
             btnSendData.TextImageRelation = TextImageRelation.ImageAboveText;
             btnSendData.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnDeleteArtistFile
             // 
-            button1.Image = Properties.Resources.FolderDelete58;
-            button1.Location = new Point(959, 13);
-            button1.Name = "button1";
-            button1.Size = new Size(85, 85);
-            button1.TabIndex = 3;
-            button1.Text = "Löschen";
-            button1.TextImageRelation = TextImageRelation.ImageAboveText;
-            button1.UseVisualStyleBackColor = true;
+            btnDeleteArtistFile.Image = Properties.Resources.FolderDelete58;
+            btnDeleteArtistFile.Location = new Point(959, 13);
+            btnDeleteArtistFile.Name = "btnDeleteArtistFile";
+            btnDeleteArtistFile.Size = new Size(85, 85);
+            btnDeleteArtistFile.TabIndex = 3;
+            btnDeleteArtistFile.Text = "Löschen";
+            btnDeleteArtistFile.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnDeleteArtistFile.UseVisualStyleBackColor = true;
+            btnDeleteArtistFile.Click += btnDeleteArtistFile_Click;
             // 
             // btnAddArtistFile
             // 
@@ -98,7 +100,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             Controls.Add(btnAddArtistFile);
-            Controls.Add(button1);
+            Controls.Add(btnDeleteArtistFile);
             Controls.Add(btnSendData);
             Controls.Add(btnDeleteArtist);
             Controls.Add(btnAddArtist);
@@ -112,7 +114,7 @@
         private Button btnAddArtist;
         private Button btnDeleteArtist;
         private Button btnSendData;
-        private Button button1;
+        private Button btnDeleteArtistFile;
         private Button btnAddArtistFile;
     }
 }

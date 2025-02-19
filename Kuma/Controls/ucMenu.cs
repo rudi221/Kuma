@@ -26,6 +26,49 @@ namespace Kuma.Controls
             FrmAddArtistFile frmAddArtistFile = new FrmAddArtistFile(ucArtistFiles);
             frmAddArtistFile.ShowDialog();
         }
+
+        private void btnDeleteArtist_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Möchtest du die ausgewählten Künstler wirklich löschen?", "Bestätigung", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+
+                try
+                {
+                    ucArtistData.FillArtistDataView();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Es ist ein Fehler aufgetreten: {ex.Message}");
+                }
+
+
+
+
+            }
+        }
+
+        private void btnDeleteArtistFile_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Möchtest du die ausgewählte Datei wirklich löschen?", "Bestätigung", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+
+                try
+                {
+                    ucArtistFiles.FillArtistFileListView();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Es ist ein Fehler aufgetreten: {ex.Message}");
+                }
+
+
+            }
+        }
+
         #endregion
 
         #region Methoden
@@ -36,6 +79,7 @@ namespace Kuma.Controls
             this.ucArtistFiles = ucArtistFiles;
         }
         #endregion
+
 
 
 
