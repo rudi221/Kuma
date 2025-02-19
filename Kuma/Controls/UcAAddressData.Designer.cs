@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             gbxAddArtisz = new GroupBox();
+            btnSearch = new Button();
             textBox3 = new TextBox();
             textBox2 = new TextBox();
             lblEmail = new Label();
@@ -38,7 +39,6 @@
             lblCampany = new Label();
             comboBox1 = new ComboBox();
             lblTitel = new Label();
-            btnSearch = new Button();
             gbxAddArtisz.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,6 +60,16 @@
             gbxAddArtisz.TabIndex = 0;
             gbxAddArtisz.TabStop = false;
             gbxAddArtisz.Text = "Neuer Kunde";
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(276, 31);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(75, 23);
+            btnSearch.TabIndex = 9;
+            btnSearch.Text = "Suche";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // textBox3
             // 
@@ -132,15 +142,6 @@
             lblTitel.Size = new Size(45, 15);
             lblTitel.TabIndex = 0;
             lblTitel.Text = "Anrede";
-            // 
-            // btnSearch
-            // 
-            btnSearch.Location = new Point(276, 31);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(75, 23);
-            btnSearch.TabIndex = 9;
-            btnSearch.Text = "Suche";
-            btnSearch.UseVisualStyleBackColor = true;
             // 
             // UcAAddressData
             // 
