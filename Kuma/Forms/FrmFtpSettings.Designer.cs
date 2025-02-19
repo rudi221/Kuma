@@ -39,7 +39,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmFtpSettings";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "FtpEinstellungen";
+            Text = "Ftp Einstellungen";
             ResumeLayout(false);
         }
 

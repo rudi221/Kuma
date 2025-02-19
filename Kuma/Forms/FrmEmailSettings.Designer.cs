@@ -33,9 +33,13 @@
             // 
             // FrmEmailSettings
             // 
-            resources.ApplyResources(this, "$this");
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(348, 188);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmEmailSettings";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Email Einstellungen";
             ResumeLayout(false);
         }
 
