@@ -23,9 +23,9 @@
 
         #region Methoden
 
-        public void FillDataView()
+        public void FillArtistDataView()
         {
-            MessageBox.Show("LoadData");
+            MessageBox.Show("LoadArtistData");
 
         }
 

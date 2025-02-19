@@ -28,7 +28,7 @@ namespace Kuma.Forms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            ucArtistData.FillDataView();
+            ucArtistData.FillArtistDataView();
 
             Close();
         }
