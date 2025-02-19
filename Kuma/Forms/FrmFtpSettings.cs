@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Kuma.Forms
 {
-    public partial class FrmCategorySettings: Form
+    public partial class FrmFtpSettings: Form
     {
-        public FrmCategorySettings()
+        public FrmFtpSettings()
         {
             InitializeComponent();
         }

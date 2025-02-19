@@ -1,6 +1,6 @@
 ﻿namespace Kuma.Forms
 {
-    partial class FrmCategorySettings
+    partial class FrmFtpSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FrmCategorySettings";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFtpSettings));
+            SuspendLayout();
+            // 
+            // FrmFtpSettings
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(349, 213);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "FrmFtpSettings";
+            Text = "FtpEinstellungen";
+            ResumeLayout(false);
         }
 
         #endregion
