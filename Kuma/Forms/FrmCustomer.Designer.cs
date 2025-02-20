@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCustomer));
             tlpMain = new TableLayoutPanel();
             plAddress = new Panel();
@@ -51,11 +52,13 @@
             btnDeleteCustomer = new Button();
             btnNewCustomer = new Button();
             btnUpdatePerson = new Button();
+            errorProvider1 = new ErrorProvider(components);
             tlpMain.SuspendLayout();
             plAddress.SuspendLayout();
             plSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomer).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // tlpMain
@@ -116,6 +119,7 @@
             btnAddCustomer.TabIndex = 10;
             btnAddCustomer.Text = "Kunde einfügen";
             btnAddCustomer.UseVisualStyleBackColor = true;
+            btnAddCustomer.Click += btnAddCustomer_Click;
             // 
             // btnUpdateCustomer
             // 
@@ -126,6 +130,7 @@
             btnUpdateCustomer.TabIndex = 9;
             btnUpdateCustomer.Text = "Kunde ändern";
             btnUpdateCustomer.UseVisualStyleBackColor = true;
+            btnUpdateCustomer.Click += btnUpdateCustomer_Click;
             // 
             // tbMail
             // 
@@ -227,6 +232,7 @@
             btnSearch.TabIndex = 10;
             btnSearch.Text = "Suche";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // tbSearch
             // 
@@ -235,6 +241,7 @@
             tbSearch.Name = "tbSearch";
             tbSearch.Size = new Size(191, 23);
             tbSearch.TabIndex = 9;
+            tbSearch.KeyDown += tbSearch_KeyDown;
             // 
             // lbSearch
             // 
@@ -258,6 +265,7 @@
             dgvCustomer.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCustomer.Size = new Size(823, 209);
             dgvCustomer.TabIndex = 2;
+            dgvCustomer.SelectionChanged += dgvCustomer_SelectionChanged;
             // 
             // panel1
             // 
@@ -280,6 +288,7 @@
             btnDeleteCustomer.TabIndex = 4;
             btnDeleteCustomer.Text = "Kunde löschen";
             btnDeleteCustomer.UseVisualStyleBackColor = true;
+            btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
             // btnNewCustomer
             // 
@@ -290,6 +299,7 @@
             btnNewCustomer.TabIndex = 3;
             btnNewCustomer.Text = "Neuer Kunde";
             btnNewCustomer.UseVisualStyleBackColor = true;
+            btnNewCustomer.Click += btnNewCustomer_Click;
             // 
             // btnUpdatePerson
             // 
@@ -300,6 +310,11 @@
             btnUpdatePerson.TabIndex = 2;
             btnUpdatePerson.Text = "Übernehmen";
             btnUpdatePerson.UseVisualStyleBackColor = true;
+            btnUpdatePerson.Click += btnUpdatePerson_Click;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // FrmCustomer
             // 
@@ -318,6 +333,7 @@
             plSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomer).EndInit();
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -345,5 +361,6 @@
         private Button btnDeleteCustomer;
         private Button btnNewCustomer;
         private Button btnUpdatePerson;
+        private ErrorProvider errorProvider1;
     }
 }

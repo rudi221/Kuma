@@ -1,6 +1,6 @@
 ﻿namespace Kuma.Controls
 {
-    partial class UcAAddressData
+    partial class UcAddressData
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -30,14 +30,14 @@
         {
             gbxAddArtisz = new GroupBox();
             btnSearch = new Button();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            tbxLastName = new TextBox();
+            tbxEmail = new TextBox();
             lblEmail = new Label();
-            tbxFirstname = new TextBox();
+            tbxFirstName = new TextBox();
             iblName = new Label();
-            textBox1 = new TextBox();
+            tbxCompany = new TextBox();
             lblCampany = new Label();
-            comboBox1 = new ComboBox();
+            cbxTitel = new ComboBox();
             lblTitel = new Label();
             gbxAddArtisz.SuspendLayout();
             SuspendLayout();
@@ -45,14 +45,14 @@
             // gbxAddArtisz
             // 
             gbxAddArtisz.Controls.Add(btnSearch);
-            gbxAddArtisz.Controls.Add(textBox3);
-            gbxAddArtisz.Controls.Add(textBox2);
+            gbxAddArtisz.Controls.Add(tbxLastName);
+            gbxAddArtisz.Controls.Add(tbxEmail);
             gbxAddArtisz.Controls.Add(lblEmail);
-            gbxAddArtisz.Controls.Add(tbxFirstname);
+            gbxAddArtisz.Controls.Add(tbxFirstName);
             gbxAddArtisz.Controls.Add(iblName);
-            gbxAddArtisz.Controls.Add(textBox1);
+            gbxAddArtisz.Controls.Add(tbxCompany);
             gbxAddArtisz.Controls.Add(lblCampany);
-            gbxAddArtisz.Controls.Add(comboBox1);
+            gbxAddArtisz.Controls.Add(cbxTitel);
             gbxAddArtisz.Controls.Add(lblTitel);
             gbxAddArtisz.Location = new Point(16, 18);
             gbxAddArtisz.Name = "gbxAddArtisz";
@@ -71,19 +71,19 @@
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
-            // textBox3
+            // tbxLastName
             // 
-            textBox3.Location = new Point(209, 90);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(142, 23);
-            textBox3.TabIndex = 8;
+            tbxLastName.Location = new Point(209, 90);
+            tbxLastName.Name = "tbxLastName";
+            tbxLastName.Size = new Size(142, 23);
+            tbxLastName.TabIndex = 8;
             // 
-            // textBox2
+            // tbxEmail
             // 
-            textBox2.Location = new Point(84, 118);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(267, 23);
-            textBox2.TabIndex = 7;
+            tbxEmail.Location = new Point(84, 118);
+            tbxEmail.Name = "tbxEmail";
+            tbxEmail.Size = new Size(267, 23);
+            tbxEmail.TabIndex = 7;
             // 
             // lblEmail
             // 
@@ -94,28 +94,28 @@
             lblEmail.TabIndex = 6;
             lblEmail.Text = "E-Mail";
             // 
-            // tbxFirstname
+            // tbxFirstName
             // 
-            tbxFirstname.Location = new Point(84, 89);
-            tbxFirstname.Name = "tbxFirstname";
-            tbxFirstname.Size = new Size(119, 23);
-            tbxFirstname.TabIndex = 5;
+            tbxFirstName.Location = new Point(84, 89);
+            tbxFirstName.Name = "tbxFirstName";
+            tbxFirstName.Size = new Size(119, 23);
+            tbxFirstName.TabIndex = 5;
             // 
             // iblName
             // 
             iblName.AutoSize = true;
             iblName.Location = new Point(22, 92);
             iblName.Name = "iblName";
-            iblName.Size = new Size(37, 15);
+            iblName.Size = new Size(39, 15);
             iblName.TabIndex = 4;
-            iblName.Text = "Firma";
+            iblName.Text = "Name";
             // 
-            // textBox1
+            // tbxCompany
             // 
-            textBox1.Location = new Point(84, 60);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(267, 23);
-            textBox1.TabIndex = 3;
+            tbxCompany.Location = new Point(84, 60);
+            tbxCompany.Name = "tbxCompany";
+            tbxCompany.Size = new Size(267, 23);
+            tbxCompany.TabIndex = 3;
             // 
             // lblCampany
             // 
@@ -126,13 +126,13 @@
             lblCampany.TabIndex = 2;
             lblCampany.Text = "Firma";
             // 
-            // comboBox1
+            // cbxTitel
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(84, 31);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(179, 23);
-            comboBox1.TabIndex = 1;
+            cbxTitel.FormattingEnabled = true;
+            cbxTitel.Location = new Point(84, 31);
+            cbxTitel.Name = "cbxTitel";
+            cbxTitel.Size = new Size(179, 23);
+            cbxTitel.TabIndex = 1;
             // 
             // lblTitel
             // 
@@ -143,12 +143,12 @@
             lblTitel.TabIndex = 0;
             lblTitel.Text = "Anrede";
             // 
-            // UcAAddressData
+            // UcAddressData
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(gbxAddArtisz);
-            Name = "UcAAddressData";
+            Name = "UcAddressData";
             Size = new Size(793, 189);
             gbxAddArtisz.ResumeLayout(false);
             gbxAddArtisz.PerformLayout();
@@ -158,14 +158,14 @@
         #endregion
 
         private GroupBox gbxAddArtisz;
-        private TextBox tbxFirstname;
+        private TextBox tbxFirstName;
         private Label iblName;
-        private TextBox textBox1;
+        private TextBox tbxCompany;
         private Label lblCampany;
-        private ComboBox comboBox1;
+        private ComboBox cbxTitel;
         private Label lblTitel;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox tbxLastName;
+        private TextBox tbxEmail;
         private Label lblEmail;
         private Button btnSearch;
     }

@@ -10,7 +10,7 @@ namespace Kuma
 
         private UcMenu ucMenu;
         private UcArtistData ucArtistData;
-        private UcAAddressData ucAddressData;
+        private UcAddressData ucAddressData;
         private UcArtistFiles ucArtistFiles;
         private UcArtistSearch ucArtistSearch;
 
@@ -44,7 +44,7 @@ namespace Kuma
         {
             ucMenu = new UcMenu();
             ucArtistData = new UcArtistData();
-            ucAddressData = new UcAAddressData();
+            ucAddressData = new UcAddressData();
             ucArtistFiles = new UcArtistFiles();
             ucArtistSearch = new UcArtistSearch();
 
