@@ -2,7 +2,6 @@
 using Kuma.Models;
 
 
-
 namespace Kuma.Forms
 {
     public partial class FrmAddArtist : Form
@@ -33,23 +32,20 @@ namespace Kuma.Forms
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
-            ArtistInfo artist = GetArtistFromForm();
+
+            int artistID = 0;
+            string artistName = tbxArtist.Text;
+            string tourName = tbxTour.Text;
+
+
+            ArtistInfo artist = new ArtistInfo(artistID, artistName, tourName);
 
             ucArtistData.InsertArtistDataFromForm(artist);
+
 
             Close();
         }
 
-
-        private ArtistInfo GetArtistFromForm()
-        {
-            return new ArtistInfo
-            {
-                ArtistID = 0,
-                ArtistName = tbxArtist.Text,
-                TourName = tbxTour.Text,
-            };
-        }
 
 
 

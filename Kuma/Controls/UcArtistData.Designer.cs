@@ -43,6 +43,7 @@
             dgvArtist.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvArtist.Size = new Size(793, 383);
             dgvArtist.TabIndex = 0;
+           
             // 
             // UcArtistData
             // 
