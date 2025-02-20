@@ -128,7 +128,44 @@ namespace Kuma.Controls
         }
 
         #endregion
-    }
 
+        private void tbxArtistSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                PerformSearch();
+
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void btnArtistSearch_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+        }
+
+
+        private void PerformSearch()
+        {
+            string searchWord = tbxArtistSearch.Text;
+
+            if (searchWord.Length > 0)
+            {
+                string query = $"SELECT ArtistId, ArtistName,TourName FROM Artist WHERE ArtistName LIKE '%{searchWord}%'";
+
+
+
+                DataTable dataTable = dbHelper.GetDataTable(query);
+                dgvArtist.DataSource = dataTable;
+            }
+            else
+            {
+                LoadArtistData();
+            }
+
+        }
+
+
+    }
 
 }

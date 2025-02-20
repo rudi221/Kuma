@@ -44,7 +44,6 @@
             pnlArtistData = new Panel();
             pnlArtistFiles = new Panel();
             pnlMenu = new Panel();
-            pnlArtistSearch = new Panel();
             menuStrip1.SuspendLayout();
             tlpMain.SuspendLayout();
             tlpData.SuspendLayout();
@@ -153,18 +152,17 @@
             tplArtistData.ColumnCount = 1;
             tplArtistData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tplArtistData.Controls.Add(pnlAddress, 0, 0);
-            tplArtistData.Controls.Add(pnlArtistData, 0, 4);
-            tplArtistData.Controls.Add(pnlArtistSearch, 0, 2);
+            tplArtistData.Controls.Add(pnlArtistData, 0, 2);
             tplArtistData.Dock = DockStyle.Fill;
             tplArtistData.Location = new Point(0, 0);
             tplArtistData.Margin = new Padding(0);
             tplArtistData.Name = "tplArtistData";
-            tplArtistData.RowCount = 5;
-            tplArtistData.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            tplArtistData.RowCount = 3;
+            tplArtistData.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tplArtistData.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tplArtistData.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tplArtistData.RowStyles.Add(new RowStyle(SizeType.Percent, 66.6666641F));
             tplArtistData.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tplArtistData.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tplArtistData.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tplArtistData.Size = new Size(793, 641);
             tplArtistData.TabIndex = 0;
             // 
@@ -175,17 +173,17 @@
             pnlAddress.Location = new Point(0, 0);
             pnlAddress.Margin = new Padding(0);
             pnlAddress.Name = "pnlAddress";
-            pnlAddress.Size = new Size(793, 180);
+            pnlAddress.Size = new Size(793, 207);
             pnlAddress.TabIndex = 0;
             // 
             // pnlArtistData
             // 
             pnlArtistData.BackColor = SystemColors.Control;
             pnlArtistData.Dock = DockStyle.Fill;
-            pnlArtistData.Location = new Point(0, 280);
+            pnlArtistData.Location = new Point(0, 227);
             pnlArtistData.Margin = new Padding(0);
             pnlArtistData.Name = "pnlArtistData";
-            pnlArtistData.Size = new Size(793, 361);
+            pnlArtistData.Size = new Size(793, 414);
             pnlArtistData.TabIndex = 1;
             // 
             // pnlArtistFiles
@@ -207,16 +205,6 @@
             pnlMenu.Name = "pnlMenu";
             pnlMenu.Size = new Size(1154, 113);
             pnlMenu.TabIndex = 1;
-            // 
-            // pnlArtistSearch
-            // 
-            pnlArtistSearch.BackColor = SystemColors.Control;
-            pnlArtistSearch.Dock = DockStyle.Fill;
-            pnlArtistSearch.Location = new Point(0, 200);
-            pnlArtistSearch.Margin = new Padding(0);
-            pnlArtistSearch.Name = "pnlArtistSearch";
-            pnlArtistSearch.Size = new Size(793, 60);
-            pnlArtistSearch.TabIndex = 2;
             // 
             // FrmMain
             // 
@@ -257,6 +245,5 @@
         private Panel pnlArtistFiles;
         private Panel pnlMenu;
         private Panel pnlArtistData;
-        private Panel pnlArtistSearch;
     }
 }
