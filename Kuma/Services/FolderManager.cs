@@ -2,7 +2,7 @@
 
 namespace Kuma.Classes.Core
 {
-    public class EditArtistFolder
+    public class FolderManager
     {
         private readonly string _oneDrivePath;
         private readonly string _parentFolderName;
@@ -15,7 +15,7 @@ namespace Kuma.Classes.Core
 
 
         // Konstruktor, der die Ordnernamen und den Pfad initialisiert
-        public EditArtistFolder(string artistFolder, string tourFolder)
+        public FolderManager(string artistFolder, string tourFolder)
         {
             _parentFolderName = "Kuenstler"; // Name des übergeordneten Ordners
             _artistFolder = artistFolder; // Name des Künstlerordners

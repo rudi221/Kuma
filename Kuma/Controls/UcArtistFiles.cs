@@ -1,4 +1,6 @@
-﻿namespace Kuma.Controls
+﻿using Kuma.Models;
+
+namespace Kuma.Controls
 {
     public partial class UcArtistFiles : UserControl
     {
@@ -19,7 +21,7 @@
 
         #region Methoden
 
-        public void FillArtistFileListView()
+        public void FillArtistFileListView(TourData artistInfo)
         {
             MessageBox.Show("LoadArtistFile");
 

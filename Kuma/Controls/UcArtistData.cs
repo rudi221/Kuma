@@ -33,17 +33,17 @@ namespace Kuma.Controls
         /// <summary>
         /// Fügt Künstlerdaten aus dem Formular in die Datenbank ein.
         /// </summary>
-        /// <param name="artist">Die Künstlerinformationen.</param>
-        public void InsertArtistDataFromForm(ArtistInfo artist)
+        /// <param name="tourData">Die Künstlerinformationen.</param>
+        public void InsertArtistDataFromForm(TourData tourData)
         {
             string table = "Artist";
             string[] columns = { "ArtistName", "TourName" };
-            object[] values = { artist.ArtistName, artist.TourName };
+            object[] values = { tourData.ArtistName, tourData.TourName };
 
             dbHelper.InsertData(table, columns, values);
 
             // Initialisierung der Klasse zur Verwaltung der Künstlerordner
-            EditArtistFolder folderHelper = new EditArtistFolder(artist.ArtistName, artist.TourName);
+            FolderManager folderHelper = new FolderManager(tourData.ArtistName, tourData.TourName);
 
             // Überprüfen und Erstellen des Ordners
             folderHelper.EnsureFolderExists();
@@ -73,11 +73,11 @@ namespace Kuma.Controls
         /// <summary>
         /// Holt den ausgewählten Künstler aus der DataGridView.
         /// </summary>
-        /// <param name="artistInfo">Die Künstlerinformationen.</param>
+        /// <param name="tourData">Die Künstlerinformationen.</param>
         /// <returns>True, wenn ein Künstler ausgewählt ist, andernfalls False.</returns>
-        internal bool GetSelectedArtist(out ArtistInfo artistInfo)
+        internal bool GetSelectedArtist(out TourData tourData)
         {
-            artistInfo = null;
+            tourData = null;
             DataGridViewRow selectedRow = null;
 
             if (dgvArtist.SelectedRows.Count > 0)
@@ -95,7 +95,7 @@ namespace Kuma.Controls
                 string artistName = selectedRow.Cells["ArtistName"].Value?.ToString();
                 string tourName = selectedRow.Cells["TourName"].Value?.ToString();
 
-                artistInfo = new ArtistInfo(artistID, artistName, tourName);
+                tourData = new TourData(artistID, artistName, tourName);
                 return true;
             }
 
@@ -106,18 +106,18 @@ namespace Kuma.Controls
         /// Löscht den ausgewählten Künstler aus der Datenbank und entfernt den zugehörigen Ordner.
         /// </summary>
         /// <param name="artistInfo">Die Künstlerinformationen.</param>
-        public void DeleteSelectedArtists(ArtistInfo artistInfo)
+        public void DeleteSelectedArtists(TourData tourData)
         {
-            int artistID = artistInfo.ArtistID;
-            string artistName = artistInfo.ArtistName;
-            string tourName = artistInfo.TourName;
+
+            string artistName = tourData.ArtistName;
+            string tourName = tourData.TourName;
 
             try
             {
-                EditArtistFolder folderHelper = new EditArtistFolder(artistInfo.ArtistName, artistInfo.TourName);
+                FolderManager folderHelper = new FolderManager(tourData.ArtistName, tourData.TourName);
                 folderHelper.DeleteArtistFolder();
 
-                string condition = $"ArtistId = {artistInfo.ArtistID}";
+                string condition = $"ArtistId = {tourData.ArtistID}";
                 dbHelper.DeleteData("Artist", condition);
                 LoadArtistData();
             }

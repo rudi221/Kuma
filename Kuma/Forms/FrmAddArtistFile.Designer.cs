@@ -35,7 +35,7 @@
             btnUpdate = new Button();
             pnlData = new Panel();
             btnOpenFileDialog = new Button();
-            comboBox1 = new ComboBox();
+            cbxCategory = new ComboBox();
             lblArtist = new Label();
             tlpMain.SuspendLayout();
             pnlButtons.SuspendLayout();
@@ -98,7 +98,7 @@
             // 
             pnlData.BackColor = SystemColors.Control;
             pnlData.Controls.Add(btnOpenFileDialog);
-            pnlData.Controls.Add(comboBox1);
+            pnlData.Controls.Add(cbxCategory);
             pnlData.Controls.Add(lblArtist);
             pnlData.Dock = DockStyle.Fill;
             pnlData.Location = new Point(15, 15);
@@ -117,13 +117,13 @@
             btnOpenFileDialog.UseVisualStyleBackColor = true;
             btnOpenFileDialog.Click += btnOpenFileDialog_Click;
             // 
-            // comboBox1
+            // cbxCategory
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(93, 18);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(150, 23);
-            comboBox1.TabIndex = 4;
+            cbxCategory.FormattingEnabled = true;
+            cbxCategory.Location = new Point(93, 18);
+            cbxCategory.Name = "cbxCategory";
+            cbxCategory.Size = new Size(150, 23);
+            cbxCategory.TabIndex = 4;
             // 
             // lblArtist
             // 
@@ -160,7 +160,7 @@
         private Button btnUpdate;
         private Panel pnlData;
         private Label lblArtist;
-        private ComboBox comboBox1;
+        private ComboBox cbxCategory;
         private Button btnOpenFileDialog;
     }
 }

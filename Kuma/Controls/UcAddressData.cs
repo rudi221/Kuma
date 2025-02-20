@@ -1,4 +1,5 @@
 ﻿using Kuma.Forms;
+using Kuma.Models;
 using Kuma.Services;
 
 namespace Kuma.Controls
@@ -9,25 +10,30 @@ namespace Kuma.Controls
     {
 
         #region Deklaration
-        public string Anrede
+
+        private int filladress = 0;
+
+
+
+        public string Titel
         {
             get { return cbxTitel.Text; }
             set { cbxTitel.Text = value; }
         }
 
-        public string Firma
+        public string Campany
         {
             get { return tbxCompany.Text; }
             set { tbxCompany.Text = value; }
         }
 
-        public string Vorname
+        public string Firstname
         {
             get { return tbxFirstName.Text; }
             set { tbxFirstName.Text = value; }
         }
 
-        public string Nachname
+        public string Lastname
         {
             get { return tbxLastName.Text; }
             set { tbxLastName.Text = value; }
@@ -65,17 +71,40 @@ namespace Kuma.Controls
 
         private void frmCustomer_AddressSelected(object sender, AddressSelectedEventArgs e)
         {
-            this.Anrede = e.Adresse.Anrede;
-            this.Firma = e.Adresse.Firma;
-            this.Vorname = e.Adresse.Vorname;
-            this.Nachname = e.Adresse.Nachname;
-            this.Email = e.Adresse.Email;
+            filladress = 1;
+
+            this.Titel = e.AddressData.Titel;
+            this.Campany = e.AddressData.Company;
+            this.Firstname = e.AddressData.Firstname;
+            this.Lastname = e.AddressData.Lastname;
+            this.Email = e.AddressData.Email;
         }
 
 
+        private bool GetClientData(out AddressData addressData)
+        {
+            addressData = null;
+
+            if (filladress == 1)
+            {
+                addressData = new AddressData(
+                    Titel,
+                    Campany,
+                    Firstname,
+                    Lastname,
+                    Email
+                );
+                filladress = 0;
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+        #endregion
+
     }
-    #endregion
 
 }
-
-

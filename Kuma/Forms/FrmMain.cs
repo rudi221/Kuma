@@ -12,7 +12,7 @@ namespace Kuma
         private UcArtistData ucArtistData;
         private UcAddressData ucAddressData;
         private UcArtistFiles ucArtistFiles;
-        private UcArtistSearch ucArtistSearch;
+
 
         #endregion
 

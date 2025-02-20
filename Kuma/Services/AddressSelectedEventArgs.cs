@@ -1,12 +1,14 @@
-﻿namespace Kuma.Services
+﻿using Kuma.Models;
+
+namespace Kuma.Services
 {
     public class AddressSelectedEventArgs
     {
-        public Adresse Adresse { get; }
+        public AddressData AddressData { get; }
 
-        public AddressSelectedEventArgs(Adresse adresse)
+        public AddressSelectedEventArgs(AddressData addressData)
         {
-            Adresse = adresse;
+            AddressData = addressData;
         }
     }
 }

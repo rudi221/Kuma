@@ -1,4 +1,5 @@
 ﻿using Kuma.Controls;
+using Kuma.Models;
 using Kuma.Repositories;
 using Kuma.Services;
 using System.Data;
@@ -105,20 +106,13 @@ namespace Kuma.Forms
 
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
-            Adresse adresse = new Adresse
-            {
-                Anrede = cbTitel.Text,
-                Firma = tbCompany.Text,
-                Vorname = tbFirstName.Text,
-                Nachname = tbLastName.Text,
-                Email = tbMail.Text
-            };
-
-
-
-
-
-
+            AddressData adresse = new AddressData(
+                cbTitel.Text,
+                tbCompany.Text,
+                tbFirstName.Text,
+                tbLastName.Text,
+                tbMail.Text
+            );
         }
 
 
@@ -247,21 +241,16 @@ namespace Kuma.Forms
 
         private void btnUpdatePerson_Click(object sender, EventArgs e)
         {
-            Adresse adresse = new Adresse
-            {
-                Anrede = cbTitel.Text,
-                Firma = tbCompany.Text,
-                Vorname = tbFirstName.Text,
-                Nachname = tbLastName.Text,
-                Email = tbMail.Text
-            };
-
+            AddressData adresse = new AddressData(
+                cbTitel.Text,
+                tbCompany.Text,
+                tbFirstName.Text,
+                tbLastName.Text,
+                tbMail.Text
+            );
 
             OnAddressSelected(new AddressSelectedEventArgs(adresse));
             this.DialogResult = DialogResult.OK;
-
-
-
         }
 
 

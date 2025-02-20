@@ -1,19 +1,25 @@
 ﻿namespace Kuma.Models
 {
 
-    public class ArtistInfo
+    public class TourData
     {
         public int ArtistID { get; set; }
         public string ArtistName { get; set; }
         public string TourName { get; set; }
 
-        public ArtistInfo(int artistID, string artistName, string tourName)
+        public TourData(int artistID, string artistName, string tourName)
         {
             ArtistID = artistID;
             ArtistName = artistName;
             TourName = tourName;
         }
+
+        public override string ToString()
+        {
+            return $"{ArtistName} - {TourName}";
+        }
     }
+
 }
 
 

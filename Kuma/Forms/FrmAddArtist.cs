@@ -38,7 +38,7 @@ namespace Kuma.Forms
             string tourName = tbxTour.Text;
 
 
-            ArtistInfo artist = new ArtistInfo(artistID, artistName, tourName);
+            TourData artist = new TourData(artistID, artistName, tourName);
 
             ucArtistData.InsertArtistDataFromForm(artist);
 
