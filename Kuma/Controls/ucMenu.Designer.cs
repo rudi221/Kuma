@@ -69,6 +69,7 @@
             btnSendData.Text = "Versenden";
             btnSendData.TextImageRelation = TextImageRelation.ImageAboveText;
             btnSendData.UseVisualStyleBackColor = true;
+            btnSendData.Click += btnSendData_Click;
             // 
             // btnDeleteArtistFile
             // 

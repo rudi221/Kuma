@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFtpSettings));
             tlpMain = new TableLayoutPanel();
             pnlField = new Panel();
@@ -42,9 +43,11 @@
             pnlButtons = new Panel();
             btnCancel = new Button();
             btnUpdate = new Button();
+            errorProvider1 = new ErrorProvider(components);
             tlpMain.SuspendLayout();
             pnlField.SuspendLayout();
             pnlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // tlpMain
@@ -183,6 +186,10 @@
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // FrmFtpSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -193,10 +200,12 @@
             Name = "FrmFtpSettings";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Ftp Einstellungen";
+            Load += FrmFtpSettings_Load;
             tlpMain.ResumeLayout(false);
             pnlField.ResumeLayout(false);
             pnlField.PerformLayout();
             pnlButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -215,5 +224,6 @@
         private Panel pnlButtons;
         private Button btnCancel;
         private Button btnUpdate;
+        private ErrorProvider errorProvider1;
     }
 }

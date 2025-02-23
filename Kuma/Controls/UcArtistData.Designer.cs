@@ -68,6 +68,7 @@
             dgvArtist.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvArtist.Size = new Size(787, 354);
             dgvArtist.TabIndex = 2;
+            dgvArtist.CellClick += dgvArtist_CellClick;
             // 
             // panel1
             // 

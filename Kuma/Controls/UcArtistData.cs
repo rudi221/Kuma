@@ -1,18 +1,19 @@
-﻿using Kuma.Classes.Core;
-using Kuma.Models;
+﻿using Kuma.Models;
 using Kuma.Repositories;
-using System.Data;
+using Kuma.Services;
 
 namespace Kuma.Controls
 {
 
 
-
+    public delegate void ReceivingTourDataEventHandler(TourData tourData);
     public partial class UcArtistData : UserControl
     {
         #region Deklaration
-        private DatabaseHelper dbHelper;
-        private UcMenu ucMenu;
+        private readonly DatabaseHelper dbHelper;
+        private TourData tourData;
+
+        public event ReceivingTourDataEventHandler TourDataClicked;
         #endregion
 
         #region Konstruktor
@@ -20,47 +21,94 @@ namespace Kuma.Controls
         {
             InitializeComponent();
             dbHelper = new DatabaseHelper();
-            ucMenu = new UcMenu();
         }
         #endregion
 
         #region Event Handlers for Buttons
-        // Event-Handler für Buttons können hier hinzugefügt werden
+
+        private void tbxArtistSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                PerformSearch();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void btnArtistSearch_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+        }
         #endregion
 
         #region Methoden
 
-        /// <summary>
-        /// Fügt Künstlerdaten aus dem Formular in die Datenbank ein.
-        /// </summary>
-        /// <param name="tourData">Die Künstlerinformationen.</param>
         public void InsertArtistDataFromForm(TourData tourData)
         {
-            string table = "Artist";
-            string[] columns = { "ArtistName", "TourName" };
-            object[] values = { tourData.ArtistName, tourData.TourName };
+            dbHelper.InsertData("Artist", new[] { "ArtistName", "TourName" }, new object[] { tourData.ArtistName, tourData.TourName });
 
-            dbHelper.InsertData(table, columns, values);
+            new FolderManager(tourData.ArtistName, tourData.TourName).EnsureFolderExists();
 
-            // Initialisierung der Klasse zur Verwaltung der Künstlerordner
-            FolderManager folderHelper = new FolderManager(tourData.ArtistName, tourData.TourName);
-
-            // Überprüfen und Erstellen des Ordners
-            folderHelper.EnsureFolderExists();
-
-            // lädt die neuen Daten in die Tabelle
             LoadArtistData();
         }
 
-        /// <summary>
-        /// Lädt die Künstlerdaten aus der Datenbank und zeigt sie in der DataGridView an.
-        /// </summary>
         public void LoadArtistData()
         {
-            string query = "SELECT * FROM Artist";
-            DataTable dataTable = dbHelper.GetDataTable(query);
-            dgvArtist.DataSource = dataTable;
+            dgvArtist.DataSource = dbHelper.GetDataTable("SELECT * FROM Artist");
 
+            GridSettings();
+            LoadFirstRow();
+            OnTourDataClicked(tourData);
+        }
+
+        public void DeleteSelectedArtists(TourData tourData)
+        {
+            try
+            {
+                new FolderManager(tourData.ArtistName, tourData.TourName).DeleteArtistFolder();
+
+                dbHelper.DeleteData("Artist", $"ArtistId = {tourData.ArtistID}");
+                LoadArtistData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Es ist ein Fehler aufgetreten: {ex.Message}");
+            }
+        }
+        #endregion
+
+        private void PerformSearch()
+        {
+            string searchWord = tbxArtistSearch.Text.Trim();
+            dgvArtist.DataSource = string.IsNullOrEmpty(searchWord)
+                ? dbHelper.GetDataTable("SELECT * FROM Artist")
+                : dbHelper.GetDataTable($"SELECT ArtistId, ArtistName, TourName FROM Artist WHERE ArtistName LIKE '%{searchWord}%'");
+
+            LoadFirstRow();
+        }
+
+        private void dgvArtist_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var row = dgvArtist.Rows[e.RowIndex];
+
+            if (row.Cells["ArtistName"].Value is string artistName &&
+                row.Cells["TourName"].Value is string tourName &&
+                int.TryParse(row.Cells["ArtistID"].Value?.ToString(), out int artistID))
+            {
+                tourData = new TourData(artistID, artistName, tourName);
+                OnTourDataClicked(tourData);  // Sicherstellen, dass das Event ausgelöst wird
+            }
+        }
+
+        protected virtual void OnTourDataClicked(TourData tourData)
+        {
+            TourDataClicked?.Invoke(tourData);
+        }
+
+        private void GridSettings()
+        {
             if (dgvArtist.Columns["ArtistId"] != null)
             {
                 dgvArtist.Columns["ArtistId"].Visible = false;
@@ -70,100 +118,24 @@ namespace Kuma.Controls
             }
         }
 
-        /// <summary>
-        /// Holt den ausgewählten Künstler aus der DataGridView.
-        /// </summary>
-        /// <param name="tourData">Die Künstlerinformationen.</param>
-        /// <returns>True, wenn ein Künstler ausgewählt ist, andernfalls False.</returns>
-        internal bool GetSelectedArtist(out TourData tourData)
+        private void LoadFirstRow()
         {
-            tourData = null;
-            DataGridViewRow selectedRow = null;
-
-            if (dgvArtist.SelectedRows.Count > 0)
+            if (dgvArtist.Rows.Count > 0)
             {
-                selectedRow = dgvArtist.SelectedRows[0];
-            }
-            else if (dgvArtist.CurrentRow != null)
-            {
-                selectedRow = dgvArtist.CurrentRow;
-            }
+                var firstRow = dgvArtist.Rows[0];
 
-            if (selectedRow != null)
-            {
-                int artistID = Convert.ToInt32(selectedRow.Cells["ArtistID"].Value);
-                string artistName = selectedRow.Cells["ArtistName"].Value?.ToString();
-                string tourName = selectedRow.Cells["TourName"].Value?.ToString();
-
-                tourData = new TourData(artistID, artistName, tourName);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Löscht den ausgewählten Künstler aus der Datenbank und entfernt den zugehörigen Ordner.
-        /// </summary>
-        /// <param name="artistInfo">Die Künstlerinformationen.</param>
-        public void DeleteSelectedArtists(TourData tourData)
-        {
-
-            string artistName = tourData.ArtistName;
-            string tourName = tourData.TourName;
-
-            try
-            {
-                FolderManager folderHelper = new FolderManager(tourData.ArtistName, tourData.TourName);
-                folderHelper.DeleteArtistFolder();
-
-                string condition = $"ArtistId = {tourData.ArtistID}";
-                dbHelper.DeleteData("Artist", condition);
-                LoadArtistData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Es ist ein Fehler aufgetreten: {ex.Message}");
+                if (firstRow.Cells["ArtistName"].Value is string artistName &&
+                    firstRow.Cells["TourName"].Value is string tourName &&
+                    int.TryParse(firstRow.Cells["ArtistID"].Value?.ToString(), out int artistID))
+                {
+                    tourData = new TourData(artistID, artistName, tourName);
+                    OnTourDataClicked(tourData);  // Event direkt aufrufen
+                }
             }
         }
 
-        #endregion
-
-        private void tbxArtistSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                PerformSearch();
-
-                e.SuppressKeyPress = true;
-            }
-        }
-
-        private void btnArtistSearch_Click(object sender, EventArgs e)
-        {
-            PerformSearch();
-        }
 
 
-        private void PerformSearch()
-        {
-            string searchWord = tbxArtistSearch.Text;
-
-            if (searchWord.Length > 0)
-            {
-                string query = $"SELECT ArtistId, ArtistName,TourName FROM Artist WHERE ArtistName LIKE '%{searchWord}%'";
-
-
-
-                DataTable dataTable = dbHelper.GetDataTable(query);
-                dgvArtist.DataSource = dataTable;
-            }
-            else
-            {
-                LoadArtistData();
-            }
-
-        }
 
 
     }

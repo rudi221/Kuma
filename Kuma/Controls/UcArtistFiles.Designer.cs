@@ -34,11 +34,14 @@
             // ltvArtistFiles
             // 
             ltvArtistFiles.Dock = DockStyle.Fill;
+            ltvArtistFiles.FullRowSelect = true;
             ltvArtistFiles.Location = new Point(0, 0);
             ltvArtistFiles.Name = "ltvArtistFiles";
             ltvArtistFiles.Size = new Size(341, 566);
             ltvArtistFiles.TabIndex = 0;
             ltvArtistFiles.UseCompatibleStateImageBehavior = false;
+            ltvArtistFiles.ItemCheck += ltvArtistFiles_ItemCheck;
+            ltvArtistFiles.MouseClick += ltvArtistFiles_MouseClick;
             // 
             // UcArtistFiles
             // 

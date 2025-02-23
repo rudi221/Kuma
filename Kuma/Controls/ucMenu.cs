@@ -13,11 +13,16 @@ namespace Kuma.Controls
         // Referenzen auf andere UserControls  
         private UcArtistData ucArtistData;
         private UcArtistFiles ucArtistFiles;
+        private TourData currentTourData;
+        private FileName currentFile;
 
         // Konstruktor  
         public UcMenu()
         {
             InitializeComponent();
+
+
+
         }
 
         #region Event Handlers für Buttons  
@@ -31,32 +36,36 @@ namespace Kuma.Controls
             }
         }
 
+
         // Event-Handler für das Hinzufügen einer Künstlerdatei  
         private void btnAddArtistFile_Click(object sender, EventArgs e)
         {
-            if (ucArtistData != null && ucArtistData.GetSelectedArtist(out TourData artistInfo))
+            using (FrmAddArtistFile frmAddArtistFile = new FrmAddArtistFile(ucArtistFiles, currentTourData))
             {
-
-                using (FrmAddArtistFile frmAddArtistFile = new FrmAddArtistFile(ucArtistFiles, artistInfo))
-                {
-                    frmAddArtistFile.ShowDialog();
-                }
-
+                frmAddArtistFile.ShowDialog();
             }
         }
 
         // Event-Handler für das Löschen eines Künstlers  
         private void btnDeleteArtist_Click(object sender, EventArgs e)
-        {
-            if (ucArtistData != null && ucArtistData.GetSelectedArtist(out TourData artistInfo))
-            {
-                DialogResult result = MessageBox.Show("Möchtest du die ausgewählten Künstler wirklich löschen?", "Bestätigung", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+
+        {
+
+            DialogResult result = MessageBox.Show("Möchtest du den Künstler wirklich löschen?", "Bestätigung", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
                 {
-                    ucArtistData.DeleteSelectedArtists(artistInfo);
+                    ucArtistData.DeleteSelectedArtists(currentTourData);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Es ist ein Fehler aufgetreten: {ex.Message}");
                 }
             }
+
         }
 
         // Event-Handler für das Löschen einer Künstlerdatei  
@@ -68,7 +77,14 @@ namespace Kuma.Controls
             {
                 try
                 {
-                    //ucArtistFiles.FillArtistFileListView(out ArtistInfo artistInfo);
+                    if (currentFile != null && currentFile.File != null)
+                    {
+                        ucArtistFiles.DeleteArtistFile(currentTourData, currentFile);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Keine Datei ausgewählt.");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -82,6 +98,28 @@ namespace Kuma.Controls
         #region Methoden  
 
         // Initialisierungsmethode für die UserControls  
+
+        public void InitializeWithArtistData(UcArtistData ucArtistData)
+        {
+            ucArtistData.TourDataClicked += ShowInListView;
+        }
+
+        public void InitializeWithArtistData(UcArtistFiles ucArtistFiles)
+        {
+            ucArtistFiles.CheckboxClicked += ShowFileName;
+        }
+
+        private void ShowFileName(FileName fileName)
+        {
+            currentFile = fileName;
+        }
+
+        private void ShowInListView(TourData tourData)
+        {
+            currentTourData = tourData;
+        }
+
+        // Initialisierungsmethode für die UserControls  
         public void Initialize(UcArtistData ucArtistData, UcArtistFiles ucArtistFiles)
         {
             this.ucArtistData = ucArtistData;
@@ -89,5 +127,10 @@ namespace Kuma.Controls
         }
 
         #endregion
+
+        private void btnSendData_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

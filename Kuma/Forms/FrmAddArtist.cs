@@ -1,5 +1,6 @@
 ﻿using Kuma.Controls;
 using Kuma.Models;
+using Kuma.Services;
 
 
 namespace Kuma.Forms
@@ -8,6 +9,7 @@ namespace Kuma.Forms
     {
         #region Deklarationen
 
+        private readonly Validator _validator;
         private UcArtistData ucArtistData;
 
         #endregion
@@ -18,6 +20,7 @@ namespace Kuma.Forms
             InitializeComponent();
 
             this.ucArtistData = ucArtistData;
+            _validator = new Validator(errorProvider1);
         }
 
         #endregion
@@ -32,10 +35,14 @@ namespace Kuma.Forms
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
-
             int artistID = 0;
             string artistName = tbxArtist.Text;
             string tourName = tbxTour.Text;
+
+
+            bool isValid = true;
+            isValid &= _validator.ValidateTextBox(tbxArtist, "Dieses Feld darf nicht leer sein.");
+            isValid &= _validator.ValidateTextBox(tbxTour, "Dieses Feld darf nicht leer sein.");
 
 
             TourData artist = new TourData(artistID, artistName, tourName);
@@ -50,7 +57,6 @@ namespace Kuma.Forms
 
 
         #endregion
-
 
 
     }

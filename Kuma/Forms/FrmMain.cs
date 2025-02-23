@@ -21,6 +21,8 @@ namespace Kuma
         {
             InitializeComponent();
 
+
+
             InitializeCustomControls();
 
             LoadArtistData();
@@ -47,7 +49,6 @@ namespace Kuma
             ucAddressData = new UcAddressData();
             ucArtistFiles = new UcArtistFiles();
 
-
             ucMenu.Initialize(ucArtistData, ucArtistFiles);
 
             pnlMenu.Controls.Add(ucMenu);
@@ -61,6 +62,11 @@ namespace Kuma
 
             pnlArtistFiles.Controls.Add(ucArtistFiles);
             ucArtistFiles.Dock = DockStyle.Fill;
+            ucArtistFiles.InitializeWithArtistData(ucArtistData);
+            ucMenu.InitializeWithArtistData(ucArtistData);
+            ucMenu.InitializeWithArtistData(ucArtistFiles);
+
+
 
             ;
         }

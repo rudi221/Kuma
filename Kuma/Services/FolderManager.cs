@@ -1,78 +1,45 @@
 ﻿using System.Security.AccessControl;
 
-namespace Kuma.Classes.Core
+namespace Kuma.Services
 {
-    public class FolderManager
+    public class FolderManager : BaseManager
     {
-        private readonly string _oneDrivePath;
-        private readonly string _parentFolderName;
-        private readonly string _artistFolder;
-        private readonly string _tourFolder;
-        private readonly string _folderPath;
-        private readonly string _artistFolderPath;
-        private readonly string _tourFolderPath;
+        public FolderManager(string artistFolder, string tourFolder) : base(artistFolder, tourFolder) { }
 
-
-
-        // Konstruktor, der die Ordnernamen und den Pfad initialisiert
-        public FolderManager(string artistFolder, string tourFolder)
+        public string GetFolderPath()
         {
-            _parentFolderName = "Kuenstler"; // Name des übergeordneten Ordners
-            _artistFolder = artistFolder; // Name des Künstlerordners
-            _tourFolder = tourFolder; // Name des Tourordners
-
-            _oneDrivePath = "C:\\ProgramData\\Kuma"; // Pfad zum OneDrive-Verzeichnis
-
-            // Kombiniere die Pfade, um den vollständigen Pfad zu den Ordnern zu erstellen
-            _folderPath = Path.Combine(_oneDrivePath, _parentFolderName);
-            _artistFolderPath = Path.Combine(_folderPath, _artistFolder);
-            _tourFolderPath = Path.Combine(_artistFolderPath, _tourFolder);
-
-
+            return _tourFolderPath;
         }
 
-        // Methode zur Sicherstellung, dass die Ordner existieren
         public void EnsureFolderExists()
         {
-            // Überprüfe, ob der Künstlerordner existiert
             if (!Directory.Exists(_artistFolderPath))
             {
-                // Erstelle den Künstlerordner und den Tourordner
                 Directory.CreateDirectory(_artistFolderPath);
                 Directory.CreateDirectory(_tourFolderPath);
-
             }
-            else if (!Directory.Exists(_tourFolderPath)) // Überprüfe, ob der Tourordner existiert
+            else if (!Directory.Exists(_tourFolderPath))
             {
-                // Erstelle den Tourordner
                 Directory.CreateDirectory(_tourFolderPath);
-
-
             }
         }
 
-        // Methode zum Löschen des Künstlerordners und seiner Inhalte
         public void DeleteArtistFolder()
         {
-            // Überprüfe, ob der Tourordner existiert
             if (Directory.Exists(_tourFolderPath))
             {
-                // Lösche alle Dateien im Tourordner und mache das Verzeichnis löschbar
                 DeleteAllFilesInFolder(_tourFolderPath);
                 EnsureDirectoryDeletable(_tourFolderPath);
                 Directory.Delete(_tourFolderPath, true);
             }
 
-            // Überprüfe, ob der Künstlerordner keine weiteren Unterordner enthält
             if (GetSubfolderCount() == 0)
             {
-                // Mache das Verzeichnis löschbar und lösche den Künstlerordner
                 EnsureDirectoryDeletable(_artistFolderPath);
                 Directory.Delete(_artistFolderPath, true);
             }
         }
 
-        // Methode zur Sicherstellung, dass ein Verzeichnis löschbar ist, indem die Zugriffsrechte gesetzt werden
         public void EnsureDirectoryDeletable(string path)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
@@ -83,9 +50,6 @@ namespace Kuma.Classes.Core
             directoryInfo.SetAccessControl(directorySecurity);
         }
 
-
-
-        // Methode zur Ermittlung der Anzahl der Unterordner im Künstlerordner
         public int GetSubfolderCount()
         {
             if (Directory.Exists(_artistFolderPath))
@@ -98,7 +62,6 @@ namespace Kuma.Classes.Core
             }
         }
 
-        // Methode zum Löschen aller Dateien in einem angegebenen Ordner
         public void DeleteAllFilesInFolder(string folderPath)
         {
             if (Directory.Exists(folderPath))
@@ -121,7 +84,6 @@ namespace Kuma.Classes.Core
                 Console.WriteLine($"Der Ordner '{folderPath}' wurde nicht gefunden.");
             }
         }
-
-
     }
+
 }

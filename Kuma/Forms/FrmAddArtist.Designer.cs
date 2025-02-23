@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAddArtist));
             tlpMain = new TableLayoutPanel();
             pnlButtons = new Panel();
@@ -38,9 +39,11 @@
             lblTour = new Label();
             tbxArtist = new TextBox();
             lblArtist = new Label();
+            errorProvider1 = new ErrorProvider(components);
             tlpMain.SuspendLayout();
             pnlButtons.SuspendLayout();
             pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // tlpMain
@@ -143,6 +146,10 @@
             lblArtist.TabIndex = 0;
             lblArtist.Text = "Künstler";
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // FrmAddArtist
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -153,10 +160,11 @@
             Name = "FrmAddArtist";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Neue Tour";
-            tlpMain.ResumeLayout(false);
+           tlpMain.ResumeLayout(false);
             pnlButtons.ResumeLayout(false);
             pnlData.ResumeLayout(false);
             pnlData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -171,5 +179,6 @@
         private Label lblTour;
         private TextBox tbxArtist;
         private Label lblArtist;
+        private ErrorProvider errorProvider1;
     }
 }

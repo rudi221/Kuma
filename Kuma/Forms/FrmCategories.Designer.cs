@@ -28,22 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategories));
             tlpMain = new TableLayoutPanel();
             pnlSearch = new Panel();
-            pnlData = new Panel();
-            pnlButtons = new Panel();
+            btnAddCategory = new Button();
+            txbCategory = new TextBox();
             lblCategory = new Label();
-            txbCategry = new TextBox();
-            button1 = new Button();
+            pnlData = new Panel();
             dgvCategories = new DataGridView();
-            btnUpdate = new Button();
+            pnlButtons = new Panel();
             btnDeleteCategory = new Button();
+            btnUpdate = new Button();
+            errorProvider1 = new ErrorProvider(components);
             tlpMain.SuspendLayout();
             pnlSearch.SuspendLayout();
             pnlData.SuspendLayout();
-            pnlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCategories).BeginInit();
+            pnlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // tlpMain
@@ -73,8 +76,8 @@
             // pnlSearch
             // 
             pnlSearch.BackColor = SystemColors.Control;
-            pnlSearch.Controls.Add(button1);
-            pnlSearch.Controls.Add(txbCategry);
+            pnlSearch.Controls.Add(btnAddCategory);
+            pnlSearch.Controls.Add(txbCategory);
             pnlSearch.Controls.Add(lblCategory);
             pnlSearch.Dock = DockStyle.Fill;
             pnlSearch.Location = new Point(15, 15);
@@ -82,6 +85,32 @@
             pnlSearch.Name = "pnlSearch";
             pnlSearch.Size = new Size(716, 44);
             pnlSearch.TabIndex = 0;
+            // 
+            // btnAddCategory
+            // 
+            btnAddCategory.Location = new Point(250, 11);
+            btnAddCategory.Name = "btnAddCategory";
+            btnAddCategory.Size = new Size(75, 23);
+            btnAddCategory.TabIndex = 2;
+            btnAddCategory.Text = "Einfügen";
+            btnAddCategory.UseVisualStyleBackColor = true;
+            btnAddCategory.Click += btnAddCategory_Click;
+            // 
+            // txbCategory
+            // 
+            txbCategory.Location = new Point(99, 11);
+            txbCategory.Name = "txbCategory";
+            txbCategory.Size = new Size(139, 23);
+            txbCategory.TabIndex = 1;
+            // 
+            // lblCategory
+            // 
+            lblCategory.AutoSize = true;
+            lblCategory.Location = new Point(27, 14);
+            lblCategory.Name = "lblCategory";
+            lblCategory.Size = new Size(57, 15);
+            lblCategory.TabIndex = 0;
+            lblCategory.Text = "Kategorie";
             // 
             // pnlData
             // 
@@ -92,6 +121,18 @@
             pnlData.Name = "pnlData";
             pnlData.Size = new Size(710, 141);
             pnlData.TabIndex = 1;
+            // 
+            // dgvCategories
+            // 
+            dgvCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCategories.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCategories.Dock = DockStyle.Fill;
+            dgvCategories.Location = new Point(0, 0);
+            dgvCategories.Name = "dgvCategories";
+            dgvCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCategories.Size = new Size(710, 141);
+            dgvCategories.TabIndex = 0;
             // 
             // pnlButtons
             // 
@@ -105,39 +146,15 @@
             pnlButtons.Size = new Size(716, 36);
             pnlButtons.TabIndex = 2;
             // 
-            // lblCategory
+            // btnDeleteCategory
             // 
-            lblCategory.AutoSize = true;
-            lblCategory.Location = new Point(27, 14);
-            lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(57, 15);
-            lblCategory.TabIndex = 0;
-            lblCategory.Text = "Kategorie";
-            // 
-            // txbCategry
-            // 
-            txbCategry.Location = new Point(99, 11);
-            txbCategry.Name = "txbCategry";
-            txbCategry.Size = new Size(139, 23);
-            txbCategry.TabIndex = 1;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(250, 11);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Einfügen";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // dgvCategories
-            // 
-            dgvCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCategories.Dock = DockStyle.Fill;
-            dgvCategories.Location = new Point(0, 0);
-            dgvCategories.Name = "dgvCategories";
-            dgvCategories.Size = new Size(710, 141);
-            dgvCategories.TabIndex = 0;
+            btnDeleteCategory.Location = new Point(27, 7);
+            btnDeleteCategory.Name = "btnDeleteCategory";
+            btnDeleteCategory.Size = new Size(123, 23);
+            btnDeleteCategory.TabIndex = 1;
+            btnDeleteCategory.Text = "Kategorie löschen";
+            btnDeleteCategory.UseVisualStyleBackColor = true;
+            btnDeleteCategory.Click += btnDeleteCategory_Click;
             // 
             // btnUpdate
             // 
@@ -147,15 +164,11 @@
             btnUpdate.TabIndex = 0;
             btnUpdate.Text = "Übernehmen";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
-            // btnDeleteCategory
+            // errorProvider1
             // 
-            btnDeleteCategory.Location = new Point(27, 7);
-            btnDeleteCategory.Name = "btnDeleteCategory";
-            btnDeleteCategory.Size = new Size(123, 23);
-            btnDeleteCategory.TabIndex = 1;
-            btnDeleteCategory.Text = "Kategorie löschen";
-            btnDeleteCategory.UseVisualStyleBackColor = true;
+            errorProvider1.ContainerControl = this;
             // 
             // FrmCategories
             // 
@@ -171,8 +184,9 @@
             pnlSearch.ResumeLayout(false);
             pnlSearch.PerformLayout();
             pnlData.ResumeLayout(false);
-            pnlButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvCategories).EndInit();
+            pnlButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -182,11 +196,12 @@
         private Panel pnlSearch;
         private Panel pnlData;
         private Panel pnlButtons;
-        private Button button1;
-        private TextBox txbCategry;
+        private Button btnAddCategory;
+        private TextBox txbCategory;
         private Label lblCategory;
         private DataGridView dgvCategories;
         private Button btnDeleteCategory;
         private Button btnUpdate;
+        private ErrorProvider errorProvider1;
     }
 }

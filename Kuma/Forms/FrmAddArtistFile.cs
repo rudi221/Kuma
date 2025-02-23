@@ -1,6 +1,7 @@
 ﻿using Kuma.Controls;
 using Kuma.Models;
 using Kuma.Repositories;
+using Kuma.Services;
 using System.Data;
 
 namespace Kuma.Forms
@@ -33,11 +34,9 @@ namespace Kuma.Forms
             InitializeComponent();
 
 
-
-            _artistId = artistInfo.ArtistID;
             _artistName = artistInfo.ArtistName;
             _tourName = artistInfo.TourName;
-            _artistInfo = artistInfo;
+
 
             checkFile = 0;
 
@@ -72,7 +71,10 @@ namespace Kuma.Forms
             }
             else
             {
-                ucArtistFile.FillArtistFileListView(_artistInfo);
+                _artistInfo = new TourData(_artistId, _artistName, _tourName);
+
+                ucArtistFile.AddToListView(_artistInfo);
+
 
                 Close();
             }
@@ -89,36 +91,15 @@ namespace Kuma.Forms
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string sourceFilePath = openFileDialog.FileName;
-                    string targetDirectory = tourNameFolderPath;
-                    string targetFilePath = Path.Combine(targetDirectory, Path.GetFileName(sourceFilePath));
-                    string fileName = System.IO.Path.GetFileName(sourceFilePath);
-                    string newFileName = cbxCategory.Text + Path.GetExtension(fileName);
-                    string newFilePath = Path.Combine(targetDirectory, newFileName);
 
-                    try
-                    {
+                    // Datei verschieben/umbenennen
+                    FileManager fileManager = new FileManager(openFileDialog.FileName, tourNameFolderPath, cbxCategory.Text);
 
-
-                        if (!String.IsNullOrEmpty(fileName))
-                        {
-
-                            File.Move(sourceFilePath, newFilePath);
-
-
-                            // File.Copy(sourceFilePath, targetFilePath, overwrite: true);
-                            AddFileToDatabase(newFileName);
-                            checkFile = 1;
-                        }
+                    fileManager.MoveFile();
+                    checkFile = 1;
 
 
 
-                        MessageBox.Show("Datei erfolgreich geladen!");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Fehler: " + ex.Message);
-                    }
                 }
             }
 
@@ -127,18 +108,13 @@ namespace Kuma.Forms
         #endregion
 
         #region Methoden
-        #endregion
-
 
         private void LoadComboBox()
         {
 
             string query = "SELECT * FROM Category";
             DataTable dataTable = dbHelper.GetDataTable(query);
-
-
-
-            cbxCategory.DisplayMember = "CategoryName"; // Ersetzen Sie ColumnName durch den tatsächlichen Spaltennamen, der angezeigt werden soll
+            cbxCategory.DisplayMember = "CategoryName";
             cbxCategory.DataSource = dataTable;
 
 
@@ -148,16 +124,7 @@ namespace Kuma.Forms
         }
 
 
-
-        private void AddFileToDatabase(string fileName)
-        {
-            string table = "ArtistFiles";
-            string[] columns = { "ArtistId", "Category", "FileName", "FolderName" };
-
-            object[] values = { _artistId, cbxCategory.Text, fileName, _tourName };
-
-            dbHelper.InsertData(table, columns, values);
-        }
+        #endregion
 
 
 
