@@ -1,18 +1,22 @@
 ﻿using Kuma.Models;
 using Kuma.Services;
+using Kuma.Utilities;
 
 namespace Kuma.Controls
 {
 
-    public delegate void ReceivingFileNameEventHandler(FileName fileName);
+    public delegate void FileNameEventHandler(FileName fileName);
+    public delegate void FileListEventHandler(ArtistFileList artistFileList);
     public partial class UcArtistFiles : UserControl
 
 
     {
 
-        public event ReceivingFileNameEventHandler CheckboxClicked;
+
         #region Deklaration
-        private UcArtistData ucArtistData;
+
+        public event FileNameEventHandler GetFileName;
+        public event FileListEventHandler GetArtistFileList;
         private FileName fileName;
         #endregion
 
@@ -116,36 +120,54 @@ namespace Kuma.Controls
             // Assign ImageList to ListView
             ltvArtistFiles.SmallImageList = imageList;
 
-
-
-            FolderManager folderManager = new FolderManager(tourData.ArtistName, tourData.TourName);
-
-            string[] files = Directory.GetFiles(folderManager.GetFolderPath());
-
-
-
-            foreach (string file in files)
+            if (!string.IsNullOrEmpty(tourData?.ArtistName) && !string.IsNullOrEmpty(tourData?.TourName))
             {
 
-                ListViewItem item = new ListViewItem();
-                item.SubItems.Add(Path.GetFileName(file));
+                FolderManager folderManager = new FolderManager(tourData.ArtistName, tourData.TourName);
 
-                item.Checked = true;
-                // Check if the file is a PDF
-                if (Path.GetExtension(file).Equals(".jpg", StringComparison.OrdinalIgnoreCase))
+                string[] files = Directory.GetFiles(folderManager.GetFolderPath());
+
+
+
+                foreach (string file in files)
                 {
-                    item.ImageKey = "pdf"; // Set the PDF icon
+
+                    ListViewItem item = new ListViewItem();
+                    item.SubItems.Add(Path.GetFileName(file));
+
+                    item.Checked = true;
+                    // Check if the file is a PDF
+                    if (Path.GetExtension(file).Equals(".jpg", StringComparison.OrdinalIgnoreCase))
+                    {
+                        item.ImageKey = "pdf"; // Set the PDF icon
+                    }
+
+                    ltvArtistFiles.Items.Add(item);
+
+                    List<ArtistFileList> artistFilesList = new List<ArtistFileList>
+
+                    { new ArtistFileList(FileHelper.GetCleanFileName(file),file)
+
+                    };
+
+                    SetArtistFileList(artistFilesList);
+
+
                 }
 
-                ltvArtistFiles.Items.Add(item);
+
+
 
 
             }
-
-
         }
 
 
+
+        private void SetArtistFileList(List<ArtistFileList> artistFileList)
+        {
+            GetArtistFileList?.Invoke(artistFileList.FirstOrDefault());
+        }
 
 
         #endregion
@@ -160,18 +182,13 @@ namespace Kuma.Controls
             {
 
                 fileName = new FileName(item.SubItems[1].Text);
-
-
-
-
-
-                OnCheckboxClicked(fileName);
+                SetFileName(fileName);
             }
         }
 
-        protected virtual void OnCheckboxClicked(FileName fileName)
+        protected virtual void SetFileName(FileName fileName)
         {
-            CheckboxClicked?.Invoke(fileName);
+            GetFileName?.Invoke(fileName);
         }
 
         private void ltvArtistFiles_ItemCheck(object sender, ItemCheckEventArgs e)

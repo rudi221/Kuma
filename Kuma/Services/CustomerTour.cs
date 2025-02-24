@@ -6,7 +6,7 @@ namespace Kuma.Services
     {
         public AddressData Customer { get; set; }
         public TourData TourData { get; set; }
-        public List<FileEntry> Files { get; set; } = new List<FileEntry>();
+        public List<ArtistFileList> Files { get; set; } = new List<ArtistFileList>();
 
         public CustomerTour(AddressData customer, TourData tourData)
         {
@@ -16,7 +16,7 @@ namespace Kuma.Services
 
         public void AddFile(string fileName, string category)
         {
-            Files.Add(new FileEntry { FileName = fileName, Category = category });
+            Files.Add(new ArtistFileList(category, fileName));
         }
 
         public override string ToString()

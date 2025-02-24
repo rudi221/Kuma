@@ -1,5 +1,6 @@
 using Kuma.Controls;
 using Kuma.Forms;
+using Kuma.Utilities;
 
 namespace Kuma
 {
@@ -20,6 +21,7 @@ namespace Kuma
         public FrmMain()
         {
             InitializeComponent();
+            InitializeDatabase();
 
 
 
@@ -33,6 +35,19 @@ namespace Kuma
         #endregion
 
         #region Methoden
+
+
+
+
+
+
+        private void InitializeDatabase()
+        {
+            var initialize = new InitializeProgramData();
+            initialize.InitializeDatabase();
+            initialize.CreateTables();
+
+        }
 
 
         private void LoadArtistData()
@@ -49,7 +64,7 @@ namespace Kuma
             ucAddressData = new UcAddressData();
             ucArtistFiles = new UcArtistFiles();
 
-            ucMenu.Initialize(ucArtistData, ucArtistFiles);
+            //ucMenu.Initialize(ucArtistData, ucArtistFiles);
 
             pnlMenu.Controls.Add(ucMenu);
             ucMenu.Dock = DockStyle.Fill;
@@ -64,7 +79,8 @@ namespace Kuma
             ucArtistFiles.Dock = DockStyle.Fill;
             ucArtistFiles.InitializeWithArtistData(ucArtistData);
             ucMenu.InitializeWithArtistData(ucArtistData);
-            ucMenu.InitializeWithArtistData(ucArtistFiles);
+            ucMenu.InitializeWithArtistFiles(ucArtistFiles);
+            ucMenu.InitializeWithAddressData(ucAddressData);
 
 
 

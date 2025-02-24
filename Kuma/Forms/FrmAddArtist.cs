@@ -35,26 +35,37 @@ namespace Kuma.Forms
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
-            int artistID = 0;
-            string artistName = tbxArtist.Text;
-            string tourName = tbxTour.Text;
 
 
-            bool isValid = true;
-            isValid &= _validator.ValidateTextBox(tbxArtist, "Dieses Feld darf nicht leer sein.");
-            isValid &= _validator.ValidateTextBox(tbxTour, "Dieses Feld darf nicht leer sein.");
+            if (ValidateForm())
+            {
+
+                TourData artist = new TourData(0, tbxArtist.Text, tbxTour.Text);
+
+                ucArtistData.InsertArtistDataFromForm(artist);
 
 
-            TourData artist = new TourData(artistID, artistName, tourName);
+                Close();
 
-            ucArtistData.InsertArtistDataFromForm(artist);
+            }
 
 
-            Close();
+
+
+
         }
 
 
 
+
+        private bool ValidateForm()
+        {
+            bool isValid = true;
+            isValid &= _validator.ValidateTextBox(tbxArtist, "Dieses Feld darf nicht leer sein.");
+            isValid &= _validator.ValidateTextBox(tbxTour, "Dieses Feld darf nicht leer sein.");
+
+            return isValid; ;
+        }
 
         #endregion
 

@@ -15,6 +15,9 @@ namespace Kuma.Controls
         private UcArtistFiles ucArtistFiles;
         private TourData currentTourData;
         private FileName currentFile;
+        private UcAddressData ucAddressData;
+        private AddressData currentAdressdata;
+        private ArtistFileList currentFileList;
 
         // Konstruktor  
         public UcMenu()
@@ -99,19 +102,11 @@ namespace Kuma.Controls
 
         // Initialisierungsmethode für die UserControls  
 
+
         public void InitializeWithArtistData(UcArtistData ucArtistData)
         {
+            this.ucArtistData = ucArtistData;
             ucArtistData.TourDataClicked += ShowInListView;
-        }
-
-        public void InitializeWithArtistData(UcArtistFiles ucArtistFiles)
-        {
-            ucArtistFiles.CheckboxClicked += ShowFileName;
-        }
-
-        private void ShowFileName(FileName fileName)
-        {
-            currentFile = fileName;
         }
 
         private void ShowInListView(TourData tourData)
@@ -119,12 +114,36 @@ namespace Kuma.Controls
             currentTourData = tourData;
         }
 
-        // Initialisierungsmethode für die UserControls  
-        public void Initialize(UcArtistData ucArtistData, UcArtistFiles ucArtistFiles)
+        public void InitializeWithAddressData(UcAddressData ucAddressData)
         {
-            this.ucArtistData = ucArtistData;
-            this.ucArtistFiles = ucArtistFiles;
+            this.ucAddressData = ucAddressData;
+            ucAddressData.GetAdressData += ShowAddressData;
         }
+
+        public void ShowAddressData(AddressData addressData)
+        {
+            currentAdressdata = addressData;
+        }
+
+
+
+        public void InitializeWithArtistFiles(UcArtistFiles ucArtistFiles)
+        {
+            this.ucArtistFiles = ucArtistFiles;
+            ucArtistFiles.GetFileName += ShowFileName;
+            ucArtistFiles.GetArtistFileList += ShowFileList;
+        }
+
+        private void ShowFileName(FileName fileName)
+        {
+            currentFile = fileName;
+        }
+
+        private void ShowFileList(ArtistFileList artistFileList)
+        {
+            currentFileList = artistFileList;
+        }
+
 
         #endregion
 

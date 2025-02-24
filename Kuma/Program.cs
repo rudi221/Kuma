@@ -1,3 +1,5 @@
+using Kuma.Utilities;
+
 namespace Kuma
 {
     internal static class Program
@@ -12,6 +14,10 @@ namespace Kuma
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new FrmMain());
+
+            var dbHelper = new InitializeProgramData();
+            dbHelper.InitializeDatabase();
+            dbHelper.CreateTables();
         }
     }
 }

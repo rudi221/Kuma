@@ -5,12 +5,15 @@ using Kuma.Services;
 namespace Kuma.Controls
 {
 
+    public delegate void ReceivingAddressDataEventHandler(AddressData addressData);
 
     public partial class UcAddressData : UserControl
     {
 
         #region Deklaration
 
+
+        public event ReceivingAddressDataEventHandler GetAdressData;
         private int filladress = 0;
 
 
@@ -44,6 +47,8 @@ namespace Kuma.Controls
             get { return tbxEmail.Text; }
             set { tbxEmail.Text = value; }
         }
+
+        private AddressData addressData;
         #endregion
 
         #region Konstruktor
@@ -78,6 +83,27 @@ namespace Kuma.Controls
             this.Firstname = e.AddressData.Firstname;
             this.Lastname = e.AddressData.Lastname;
             this.Email = e.AddressData.Email;
+
+
+            addressData = new AddressData(
+                   Titel = e.AddressData.Titel,
+                     Campany = e.AddressData.Company,
+                        Firstname = e.AddressData.Firstname,
+                            Lastname = e.AddressData.Lastname,
+                                Email = e.AddressData.Email
+
+               );
+
+
+            OnGetAdressData(addressData);
+
+
+
+        }
+
+        protected virtual void OnGetAdressData(AddressData addressData)
+        {
+            GetAdressData?.Invoke(addressData);
         }
 
 
@@ -87,19 +113,14 @@ namespace Kuma.Controls
 
             if (filladress == 1)
             {
-                addressData = new AddressData(
-                    Titel,
-                    Campany,
-                    Firstname,
-                    Lastname,
-                    Email
-                );
+
                 filladress = 0;
                 return true;
             }
 
             return false;
         }
+
 
 
 
