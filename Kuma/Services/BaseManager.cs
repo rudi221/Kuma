@@ -2,12 +2,14 @@
 {
     public class BaseManager
     {
-        protected string _oneDrivePath = "C:\\ProgramData\\Kuma";
-        protected string _parentFolderName = "Kuenstler";
+        protected string _programFolderPath = "C:\\ProgramData\\Kuma";
+        protected string _mainArtitisFolder = "Kuenstler";
+        protected string _programTempFolder = "Temp";
+
+
         protected string _artistFolder;
         protected string _tourFolder;
-
-        protected string _folderPath;
+        protected string _artistMainFolderPath;
         protected string _artistFolderPath;
         protected string _tourFolderPath;
 
@@ -20,8 +22,9 @@
 
         private void CombinePaths()
         {
-            _folderPath = Path.Combine(_oneDrivePath, _parentFolderName);
-            _artistFolderPath = Path.Combine(_folderPath, _artistFolder);
+            _artistMainFolderPath = Path.Combine(_programFolderPath, _mainArtitisFolder);
+            _programFolderPath = Path.Combine(_programFolderPath, _programTempFolder);
+            _artistFolderPath = Path.Combine(_artistMainFolderPath, _artistFolder);
             _tourFolderPath = Path.Combine(_artistFolderPath, _tourFolder);
         }
     }

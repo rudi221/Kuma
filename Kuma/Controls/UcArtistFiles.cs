@@ -17,6 +17,7 @@ namespace Kuma.Controls
 
         private FileName fileName;
         private TourData currentTourData;
+        private string sourcePath;
         private readonly List<ArtistFileList> artistFilesList = new();
 
         #endregion
@@ -87,7 +88,7 @@ namespace Kuma.Controls
             if (tourData == null || file?.File == null) return;
 
             // Erstellt eine Instanz des FileManagers und löscht die Datei.
-            new FileManager(tourData.ArtistName, tourData.TourName).DeleteFile(file.File);
+            new FileManager(tourData.ArtistName, tourData.TourName).DeleteArtistFile(file.File);
 
             // Aktualisiert die ListView nach dem Löschen.
             AddToListView(tourData);
@@ -174,17 +175,21 @@ namespace Kuma.Controls
         /// </summary>
         private void ltvArtistFiles_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            string folderPath = new FolderManager(currentTourData.ArtistName, currentTourData.TourName).GetFolderPath();
             string fileName = ltvArtistFiles.Items[e.Index].SubItems[1].Text;
+            sourcePath = Path.Combine(folderPath, fileName);
 
             if (e.NewValue == CheckState.Checked)
             {
                 // Fügt die Datei zur Liste hinzu, wenn sie markiert wird.
                 artistFilesList.Add(new ArtistFileList(FileHelper.GetCleanFileName(fileName), fileName));
+                ManageTempFolder.CopyToTemp(sourcePath);
             }
             else
             {
                 // Entfernt die Datei aus der Liste, wenn die Markierung entfernt wird.
                 artistFilesList.RemoveAll(f => f.FileName == fileName);
+                ManageTempFolder.DeleteFromTemp(fileName);
             }
 
             // Aktualisiert die Liste der Künstlerdateien.

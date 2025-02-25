@@ -55,7 +55,7 @@ namespace Kuma.Services
             return Path.Combine(TourFolder, newFileName);
         }
 
-        public void MoveFile()
+        public void MoveArtistFile()
         {
             string targetFilePath = GetUniqueFilePath();
 
@@ -70,7 +70,7 @@ namespace Kuma.Services
             }
         }
 
-        public void CopyFile()
+        public void CopyArtistFile()
         {
             string targetFilePath = GetUniqueFilePath();
 
@@ -87,7 +87,7 @@ namespace Kuma.Services
 
 
 
-        public void DeleteFile(string fileName)
+        public void DeleteArtistFile(string fileName)
         {
             string filePath = Path.Combine(_tourFolderPath, fileName);
 

@@ -43,14 +43,8 @@ namespace Kuma.Forms
             this.ucArtistFile = ucArtistFile;
             dbHelper = new DatabaseHelper();
 
-            artistFolderPath = "C:\\ProgramData\\Kuma\\Kuenstler";
-            artistNameFolderPath = Path.Combine(artistFolderPath, _artistName);
-            tourNameFolderPath = Path.Combine(artistNameFolderPath, _tourName);
-
             LoadComboBox();
         }
-
-
 
         #endregion
 
@@ -95,7 +89,7 @@ namespace Kuma.Forms
                     // Datei verschieben/umbenennen
                     FileManager fileManager = new FileManager(openFileDialog.FileName, tourNameFolderPath, cbxCategory.Text);
 
-                    fileManager.MoveFile();
+                    fileManager.MoveArtistFile();
                     checkFile = 1;
 
 

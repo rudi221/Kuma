@@ -1,6 +1,6 @@
 ﻿public static class ManageTempFolder
 {
-    private static readonly string tempPath = Path.GetTempPath();
+    private static readonly string tempPath = "C:\\ProgramData\\Kuma\\Temp";
 
     /// <summary>
     /// kopiert eine Datei in den temporären Ordner.
