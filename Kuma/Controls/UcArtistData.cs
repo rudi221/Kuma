@@ -58,7 +58,7 @@ namespace Kuma.Controls
 
             GridSettings();
             LoadFirstRow();
-            OnTourDataClicked(tourData);
+            // OnTourDataClicked(tourData);
         }
 
         public void DeleteSelectedArtists(TourData tourData)
@@ -98,8 +98,12 @@ namespace Kuma.Controls
                 int.TryParse(row.Cells["ArtistID"].Value?.ToString(), out int artistID))
             {
                 tourData = new TourData(artistID, artistName, tourName);
-                OnTourDataClicked(tourData);  // Sicherstellen, dass das Event ausgelöst wird
+                // Sicherstellen, dass das Event ausgelöst wird
+
+                OnTourDataClicked(tourData);
             }
+
+
         }
 
         protected virtual void OnTourDataClicked(TourData tourData)
@@ -132,6 +136,8 @@ namespace Kuma.Controls
                     OnTourDataClicked(tourData);  // Event direkt aufrufen
                 }
             }
+
+
         }
 
 

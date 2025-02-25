@@ -1,5 +1,6 @@
 ﻿using Kuma.Forms;
 using Kuma.Models;
+using Kuma.Services;
 
 namespace Kuma.Controls
 {
@@ -17,13 +18,15 @@ namespace Kuma.Controls
         private FileName currentFile;
         private UcAddressData ucAddressData;
         private AddressData currentAdressdata;
-        private ArtistFileList currentFileList;
+        private List<ArtistFileList> currentFileList;
+
 
         // Konstruktor  
         public UcMenu()
         {
             InitializeComponent();
 
+            currentFileList = new List<ArtistFileList>();
 
 
         }
@@ -132,24 +135,84 @@ namespace Kuma.Controls
             this.ucArtistFiles = ucArtistFiles;
             ucArtistFiles.GetFileName += ShowFileName;
             ucArtistFiles.GetArtistFileList += ShowFileList;
+
         }
 
         private void ShowFileName(FileName fileName)
         {
+
             currentFile = fileName;
+
         }
 
-        private void ShowFileList(ArtistFileList artistFileList)
+        private void ShowFileList(List<ArtistFileList> artistFileList)
         {
+
+
+
             currentFileList = artistFileList;
         }
 
 
-        #endregion
-
         private void btnSendData_Click(object sender, EventArgs e)
         {
 
+            CustomerTour customerTour = new CustomerTour(currentAdressdata, currentTourData);
+
+
+            if (currentFileList != null && currentFileList.Count > 0)
+            {
+
+                foreach (var artistFile in currentFileList)
+                {
+                    customerTour.AddFile(artistFile.FileName, artistFile.Category);
+                }
+            }
+
+
+            if (customerTour.Customer != null)
+            {
+                FrmSendData frmSendData = new FrmSendData(customerTour);
+                frmSendData.ShowDialog();
+            }
+
+            else
+            {
+                MessageBox.Show("Bitte wählen Sie einen Kunden aus.");
+            }
+
+
+
+
+            //string uploadFile = "bühne.jpg";
+            //string remoteFileName = System.IO.Path.GetFileName(uploadFile); // Holt den Dateinamen
+
+            //lblStatus.Text = "📤 Upload läuft...";
+            //lblStatus.Refresh();
+
+            //bool success = FtpHelper.UploadFile(uploadFile, remoteFileName);
+
+            //lblStatus.Text = success ? "✅ Upload erfolgreich!" : "❌ Upload fehlgeschlagen!";
+
+
+
+
+            //create Html
+
+            string htmlContent = HtmlGenerator.GenerateHtml(currentFileList, currentTourData);
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "index.html");
+            File.WriteAllText(filePath, htmlContent);
+
+
+
+            // send Email
+            var emailManager = new EmailManager("smtp.ionos.de", 587, "info@dreibach.de", "4e:nrkmh8aAFuTS");
+
+            emailManager.SendEmail("r.dreibach@t-online.de", "Test-Mail", "Hallo! Dies ist ein Test mit MailKit.", false);
+
+
+            MessageBox.Show(customerTour.ToString());
         }
     }
 }
+#endregion

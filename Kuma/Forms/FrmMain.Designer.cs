@@ -36,6 +36,7 @@
             tsmKategorieItem = new ToolStripMenuItem();
             tsmEmailItem = new ToolStripMenuItem();
             tsmFtpItem = new ToolStripMenuItem();
+            tsmEmailtemplate = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             tlpMain = new TableLayoutPanel();
             tlpData = new TableLayoutPanel();
@@ -75,7 +76,7 @@
             // 
             // tsmSettings
             // 
-            tsmSettings.DropDownItems.AddRange(new ToolStripItem[] { tsmKategorieItem, tsmEmailItem, tsmFtpItem });
+            tsmSettings.DropDownItems.AddRange(new ToolStripItem[] { tsmKategorieItem, tsmEmailItem, tsmFtpItem, tsmEmailtemplate });
             tsmSettings.Name = "tsmSettings";
             tsmSettings.Size = new Size(90, 20);
             tsmSettings.Text = "Einstellungen";
@@ -83,23 +84,30 @@
             // tsmKategorieItem
             // 
             tsmKategorieItem.Name = "tsmKategorieItem";
-            tsmKategorieItem.Size = new Size(124, 22);
+            tsmKategorieItem.Size = new Size(180, 22);
             tsmKategorieItem.Text = "Kategorie";
             tsmKategorieItem.Click += tsmKategorieItem_Click;
             // 
             // tsmEmailItem
             // 
             tsmEmailItem.Name = "tsmEmailItem";
-            tsmEmailItem.Size = new Size(124, 22);
+            tsmEmailItem.Size = new Size(180, 22);
             tsmEmailItem.Text = "E-Mail";
             tsmEmailItem.Click += tsmEmailItem_Click;
             // 
             // tsmFtpItem
             // 
             tsmFtpItem.Name = "tsmFtpItem";
-            tsmFtpItem.Size = new Size(124, 22);
+            tsmFtpItem.Size = new Size(180, 22);
             tsmFtpItem.Text = "FTP";
             tsmFtpItem.Click += tsmFtpItem_Click;
+            // 
+            // tsmEmailtemplate
+            // 
+            tsmEmailtemplate.Name = "tsmEmailtemplate";
+            tsmEmailtemplate.Size = new Size(180, 22);
+            tsmEmailtemplate.Text = "Email Template";
+            tsmEmailtemplate.Click += tsmEmailtemplate_Click;
             // 
             // statusStrip1
             // 
@@ -245,5 +253,6 @@
         private Panel pnlArtistFiles;
         private Panel pnlMenu;
         private Panel pnlArtistData;
+        private ToolStripMenuItem tsmEmailtemplate;
     }
 }

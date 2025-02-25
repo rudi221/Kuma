@@ -1,4 +1,5 @@
 using Kuma.Utilities;
+using Microsoft.Extensions.Configuration;
 
 namespace Kuma
 {
@@ -18,6 +19,17 @@ namespace Kuma
             var dbHelper = new InitializeProgramData();
             dbHelper.InitializeDatabase();
             dbHelper.CreateTables();
+
+            var configuration = new ConfigurationBuilder()
+           .SetBasePath(Directory.GetCurrentDirectory())
+           .AddJsonFile("appsettings.json")
+           .Build();
+
+            // Hole den ProgramData-Ordnerpfad aus der Konfiguration
+            string programDataFolder = configuration["FolderPaths:ProgramDataFolder"];
+
+            Console.WriteLine($"ProgramData Ordnerpfad: {programDataFolder}");
+
         }
     }
 }

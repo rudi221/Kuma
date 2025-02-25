@@ -119,5 +119,11 @@ namespace Kuma
 
 
 
+
+        private void tsmEmailtemplate_Click(object sender, EventArgs e)
+        {
+            FrmEmailTemplate frmEmailTemplate = new FrmEmailTemplate();
+            frmEmailTemplate.ShowDialog();
+        }
     }
 }

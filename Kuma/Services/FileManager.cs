@@ -70,6 +70,22 @@ namespace Kuma.Services
             }
         }
 
+        public void CopyFile()
+        {
+            string targetFilePath = GetUniqueFilePath();
+
+            try
+            {
+                File.Copy(ArtistFolder, targetFilePath);
+                Console.WriteLine($"Datei erfolgreich verschoben: {targetFilePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Verschieben der Datei: {ex.Message}");
+            }
+        }
+
+
 
         public void DeleteFile(string fileName)
         {
