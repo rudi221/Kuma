@@ -44,8 +44,8 @@
             lblArtist = new Label();
             pnlMessage = new Panel();
             lblMessage = new Label();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txbMessageContent = new TextBox();
+            txbCc = new TextBox();
             lblEmail = new Label();
             tlpMain.SuspendLayout();
             bnlButtons.SuspendLayout();
@@ -199,8 +199,8 @@
             // 
             pnlMessage.BackColor = SystemColors.Control;
             pnlMessage.Controls.Add(lblMessage);
-            pnlMessage.Controls.Add(textBox2);
-            pnlMessage.Controls.Add(textBox1);
+            pnlMessage.Controls.Add(txbMessageContent);
+            pnlMessage.Controls.Add(txbCc);
             pnlMessage.Controls.Add(lblEmail);
             pnlMessage.Dock = DockStyle.Fill;
             pnlMessage.Location = new Point(23, 98);
@@ -217,20 +217,20 @@
             lblMessage.TabIndex = 3;
             lblMessage.Text = "Nachricht";
             // 
-            // textBox2
+            // txbMessageContent
             // 
-            textBox2.Location = new Point(230, 47);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(459, 182);
-            textBox2.TabIndex = 2;
+            txbMessageContent.Location = new Point(230, 47);
+            txbMessageContent.Multiline = true;
+            txbMessageContent.Name = "txbMessageContent";
+            txbMessageContent.Size = new Size(459, 182);
+            txbMessageContent.TabIndex = 2;
             // 
-            // textBox1
+            // txbCc
             // 
-            textBox1.Location = new Point(228, 14);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(459, 23);
-            textBox1.TabIndex = 1;
+            txbCc.Location = new Point(228, 14);
+            txbCc.Name = "txbCc";
+            txbCc.Size = new Size(459, 23);
+            txbCc.TabIndex = 1;
             // 
             // lblEmail
             // 
@@ -268,8 +268,8 @@
         private Panel bnlButtons;
         private Button btnCancel;
         private Panel pnlMessage;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txbMessageContent;
+        private TextBox txbCc;
         private Label lblEmail;
         private Label pnlStatus;
         private ProgressBar progressBar1;

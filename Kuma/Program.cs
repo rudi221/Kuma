@@ -1,35 +1,23 @@
 using Kuma.Utilities;
-using Microsoft.Extensions.Configuration;
 
 namespace Kuma
 {
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            // Um die Anwendungskonfiguration anzupassen, wie z. B. hohe DPI-Einstellungen oder Standardschriftarten,
+            // siehe https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new FrmMain());
 
             var dbHelper = new InitializeProgramData();
             dbHelper.InitializeDatabase();
             dbHelper.CreateTables();
-
-            var configuration = new ConfigurationBuilder()
-           .SetBasePath(Directory.GetCurrentDirectory())
-           .AddJsonFile("appsettings.json")
-           .Build();
-
-            // Hole den ProgramData-Ordnerpfad aus der Konfiguration
-            string programDataFolder = configuration["FolderPaths:ProgramDataFolder"];
-
-            Console.WriteLine($"ProgramData Ordnerpfad: {programDataFolder}");
-
         }
     }
 }

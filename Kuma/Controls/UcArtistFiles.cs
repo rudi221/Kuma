@@ -3,15 +3,18 @@ using Kuma.Services;
 using Kuma.Utilities;
 
 namespace Kuma.Controls
-{
 
+{
+    #region Delegates
+    // Delegates zur Übergabe von Dateinamen und Künstlerdateilisten.
     public delegate void FileNameEventHandler(FileName fileName);
     public delegate void FileListEventHandler(List<ArtistFileList> artistFileList);
-
+    #endregion
     public partial class UcArtistFiles : UserControl
     {
         #region Deklaration
 
+        // Ereignisse zur Übergabe von Dateinamen und Künstlerdateilisten.
         public event FileNameEventHandler GetFileName;
         public event FileListEventHandler GetArtistFileList;
 
@@ -65,7 +68,7 @@ namespace Kuma.Controls
             if (artistInfo == null) return;
 
             // Setzt den Verzeichnispfad für die Tourdaten.
-            string tourPath = Path.Combine("C:\\ProgramData\\Kuma\\Kuenstler", artistInfo.ArtistName, artistInfo.TourName);
+            string tourPath = PathManager.GetArtistTourPath(artistInfo.ArtistName, artistInfo.TourName);
 
             // Prüft, ob das Verzeichnis existiert, bevor Dateien geladen werden.
             if (!Directory.Exists(tourPath))
@@ -114,17 +117,20 @@ namespace Kuma.Controls
         {
             if (tourData == null) return;
 
+            // Löscht alle temporären Künstlerdateien.
+            FileManager.DeleteAllArtistFile(PathManager.GetTempPath());
+
             currentTourData = tourData;
             artistFilesList.Clear();
             ltvArtistFiles.Items.Clear();
 
             // Ermittelt den Verzeichnispfad der Tour.
-            string folderPath = new FolderManager(tourData.ArtistName, tourData.TourName).GetFolderPath();
+            string artistTourFolder = FolderManager.GetArtistTourPath(tourData.ArtistName, tourData.TourName);
 
             // Prüft, ob das Verzeichnis existiert, bevor Dateien geladen werden.
-            if (Directory.Exists(folderPath))
+            if (Directory.Exists(artistTourFolder))
             {
-                LoadFilesIntoListView(Directory.GetFiles(folderPath));
+                LoadFilesIntoListView(Directory.GetFiles(artistTourFolder));
             }
 
             // Aktualisiert die Liste der Künstlerdateien.
@@ -162,7 +168,7 @@ namespace Kuma.Controls
         /// </summary>
         private void ltvArtistFiles_MouseClick(object sender, MouseEventArgs e)
         {
-            ListViewItem item = ltvArtistFiles.HitTest(e.Location).Item;
+            ListViewItem item = ltvArtistFiles.HitTest(e.Location)?.Item!;
             if (item != null)
             {
                 fileName = new FileName(item.SubItems[1].Text);
@@ -175,9 +181,10 @@ namespace Kuma.Controls
         /// </summary>
         private void ltvArtistFiles_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            string folderPath = new FolderManager(currentTourData.ArtistName, currentTourData.TourName).GetFolderPath();
+            // Ermittelt den Verzeichnispfad der aktuellen Tour.
+            string artistTourFolder = FolderManager.GetArtistTourPath(currentTourData.ArtistName, currentTourData.TourName);
             string fileName = ltvArtistFiles.Items[e.Index].SubItems[1].Text;
-            sourcePath = Path.Combine(folderPath, fileName);
+            sourcePath = Path.Combine(artistTourFolder, fileName);
 
             if (e.NewValue == CheckState.Checked)
             {
@@ -198,6 +205,4 @@ namespace Kuma.Controls
 
         #endregion
     }
-
 }
-

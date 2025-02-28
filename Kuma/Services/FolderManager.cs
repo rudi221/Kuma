@@ -1,46 +1,60 @@
-﻿using System.Security.AccessControl;
-
-namespace Kuma.Services
+﻿namespace Kuma.Services
 {
-    public class FolderManager : BaseManager
+    using System;
+    using System.IO;
+    using System.Security.AccessControl;
+
+
+
+    public class FolderManager : PathManager
     {
-        public FolderManager(string artistFolder, string tourFolder) : base(artistFolder, tourFolder) { }
+        public static string ArtistDirectory { get; private set; }
+        public static string TourDirectory { get; private set; }
 
-        public string GetFolderPath()
+        public static void SetDirectories(string artistFolder, string tourFolder)
         {
-            return _tourFolderPath;
+            ArtistDirectory = Path.Combine(_mainArtistFolder, artistFolder);
+            TourDirectory = Path.Combine(ArtistDirectory, tourFolder);
         }
 
-        public void EnsureFolderExists()
+
+
+        public static void ArtistTourFolderExists()
         {
-            if (!Directory.Exists(_artistFolderPath))
+            if (!Directory.Exists(ArtistDirectory))
             {
-                Directory.CreateDirectory(_artistFolderPath);
-                Directory.CreateDirectory(_tourFolderPath);
+                Directory.CreateDirectory(ArtistDirectory);
+                Console.WriteLine($"Künstlerordner '{ArtistDirectory}' wurde erstellt.");
             }
-            else if (!Directory.Exists(_tourFolderPath))
+
+            if (!Directory.Exists(TourDirectory))
             {
-                Directory.CreateDirectory(_tourFolderPath);
+                Directory.CreateDirectory(TourDirectory);
+                Console.WriteLine($"Tourordner '{TourDirectory}' wurde erstellt.");
+            }
+            else
+            {
+                Console.WriteLine($"Tourordner '{TourDirectory}' existiert bereits.");
             }
         }
 
-        public void DeleteArtistFolder()
+        public static void DeleteArtistFolder()
         {
-            if (Directory.Exists(_tourFolderPath))
+            if (Directory.Exists(TourDirectory))
             {
-                DeleteAllFilesInFolder(_tourFolderPath);
-                EnsureDirectoryDeletable(_tourFolderPath);
-                Directory.Delete(_tourFolderPath, true);
+                DeleteAllFilesInFolder(TourDirectory);
+                EnsureDirectoryDeletable(TourDirectory);
+                Directory.Delete(TourDirectory, true);
             }
 
             if (GetSubfolderCount() == 0)
             {
-                EnsureDirectoryDeletable(_artistFolderPath);
-                Directory.Delete(_artistFolderPath, true);
+                EnsureDirectoryDeletable(ArtistDirectory);
+                Directory.Delete(ArtistDirectory, true);
             }
         }
 
-        public void EnsureDirectoryDeletable(string path)
+        public static void EnsureDirectoryDeletable(string path)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
             DirectorySecurity directorySecurity = directoryInfo.GetAccessControl();
@@ -50,19 +64,19 @@ namespace Kuma.Services
             directoryInfo.SetAccessControl(directorySecurity);
         }
 
-        public int GetSubfolderCount()
+        public static int GetSubfolderCount()
         {
-            if (Directory.Exists(_artistFolderPath))
+            if (Directory.Exists(ArtistDirectory))
             {
-                return Directory.GetDirectories(_artistFolderPath).Length;
+                return Directory.GetDirectories(ArtistDirectory).Length;
             }
             else
             {
-                throw new DirectoryNotFoundException($"Das Verzeichnis '{_artistFolderPath}' wurde nicht gefunden.");
+                throw new DirectoryNotFoundException($"Das Verzeichnis '{ArtistDirectory}' wurde nicht gefunden.");
             }
         }
 
-        public void DeleteAllFilesInFolder(string folderPath)
+        public static void DeleteAllFilesInFolder(string folderPath)
         {
             if (Directory.Exists(folderPath))
             {

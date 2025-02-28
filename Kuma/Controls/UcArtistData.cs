@@ -43,29 +43,33 @@ namespace Kuma.Controls
 
         #region Methoden
 
+        // Fügt Künstlerdaten aus dem Formular in die Datenbank ein
         public void InsertArtistDataFromForm(TourData tourData)
         {
             dbHelper.InsertData("Artist", new[] { "ArtistName", "TourName" }, new object[] { tourData.ArtistName, tourData.TourName });
 
-            new FolderManager(tourData.ArtistName, tourData.TourName).EnsureFolderExists();
+            FolderManager.SetDirectories(tourData.ArtistName, tourData.TourName);
+            FolderManager.ArtistTourFolderExists();
 
             LoadArtistData();
         }
 
+        // Lädt alle Künstlerdaten aus der Datenbank und zeigt sie im DataGridView an
         public void LoadArtistData()
         {
             dgvArtist.DataSource = dbHelper.GetDataTable("SELECT * FROM Artist");
 
             GridSettings();
             LoadFirstRow();
-            // OnTourDataClicked(tourData);
         }
 
+        // Löscht den ausgewählten Künstler aus der Datenbank und dem Dateisystem
         public void DeleteSelectedArtists(TourData tourData)
         {
             try
             {
-                new FolderManager(tourData.ArtistName, tourData.TourName).DeleteArtistFolder();
+                FolderManager.SetDirectories(tourData.ArtistName, tourData.TourName);
+                FolderManager.DeleteArtistFolder();
 
                 dbHelper.DeleteData("Artist", $"ArtistId = {tourData.ArtistID}");
                 LoadArtistData();
@@ -77,6 +81,7 @@ namespace Kuma.Controls
         }
         #endregion
 
+        // Führt eine Suche nach Künstlern durch und zeigt die Ergebnisse im DataGridView an
         private void PerformSearch()
         {
             string searchWord = tbxArtistSearch.Text.Trim();
@@ -87,6 +92,7 @@ namespace Kuma.Controls
             LoadFirstRow();
         }
 
+        // Event-Handler für das Klicken auf eine Zelle im DataGridView
         private void dgvArtist_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -98,19 +104,17 @@ namespace Kuma.Controls
                 int.TryParse(row.Cells["ArtistID"].Value?.ToString(), out int artistID))
             {
                 tourData = new TourData(artistID, artistName, tourName);
-                // Sicherstellen, dass das Event ausgelöst wird
-
                 OnTourDataClicked(tourData);
             }
-
-
         }
 
+        // Löst das TourDataClicked-Event aus
         protected virtual void OnTourDataClicked(TourData tourData)
         {
             TourDataClicked?.Invoke(tourData);
         }
 
+        // Konfiguriert die Einstellungen des DataGridView
         private void GridSettings()
         {
             if (dgvArtist.Columns["ArtistId"] != null)
@@ -122,6 +126,7 @@ namespace Kuma.Controls
             }
         }
 
+        // Lädt die erste Zeile des DataGridView und löst das TourDataClicked-Event aus
         private void LoadFirstRow()
         {
             if (dgvArtist.Rows.Count > 0)
@@ -133,17 +138,10 @@ namespace Kuma.Controls
                     int.TryParse(firstRow.Cells["ArtistID"].Value?.ToString(), out int artistID))
                 {
                     tourData = new TourData(artistID, artistName, tourName);
-                    OnTourDataClicked(tourData);  // Event direkt aufrufen
+                    OnTourDataClicked(tourData);
                 }
             }
-
-
         }
-
-
-
-
-
     }
 
 }

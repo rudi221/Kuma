@@ -55,25 +55,28 @@ namespace Kuma.Forms
         {
             return _validator.ValidateTextBox(txbServer, "Dieses Feld darf nicht leer sein.") &&
                    _validator.ValidateTextBox(txbUser, "Dieses Feld darf nicht leer sein.") &&
-                   _validator.ValidateTextBox(txbPassword, "Dieses Feld darf nicht leer sein.");
+                   _validator.ValidateTextBox(txbPassword, "Dieses Feld darf nicht leer sein.") &&
+                   _validator.ValidateTextBox(txbDomain, "Dieses Feld darf nicht leer sein.");
         }
 
         private void UpdateSettings()
         {
             var ini = new IniFile(IniFilePath);
-            ini.Write("FTP", "Server", txbServer.Text);
-            ini.Write("FTP", "Benutzer", txbUser.Text);
-            ini.Write("FTP", "Passwort", txbPassword.Text);
+            ini.Write("Email", "Server", txbServer.Text);
+            ini.Write("Email", "Benutzer", txbUser.Text);
+            ini.Write("Email", "Passwort", txbPassword.Text);
+            ini.Write("Email", "Domain", txbDomain.Text);
         }
 
         private void LoadSettings()
         {
             var ini = new IniFile(IniFilePath);
-            var ftpSection = ini.ReadSection("FTP");
+            var emailSection = ini.ReadSection("Email");
 
-            if (ftpSection.TryGetValue("Server", out var server)) txbServer.Text = server;
-            if (ftpSection.TryGetValue("Benutzer", out var user)) txbUser.Text = user;
-            if (ftpSection.TryGetValue("Passwort", out var password)) txbPassword.Text = password;
+            if (emailSection.TryGetValue("Server", out var server)) txbServer.Text = server;
+            if (emailSection.TryGetValue("Benutzer", out var user)) txbUser.Text = user;
+            if (emailSection.TryGetValue("Passwort", out var password)) txbPassword.Text = password;
+            if (emailSection.TryGetValue("Domain", out var domain)) txbDomain.Text = domain;
         }
 
 

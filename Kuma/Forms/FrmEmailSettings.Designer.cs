@@ -42,6 +42,8 @@
             btnCancel = new Button();
             btnUpdate = new Button();
             errorProvider1 = new ErrorProvider(components);
+            lblDomain = new Label();
+            txbDomain = new TextBox();
             tlpMain.SuspendLayout();
             pnlField.SuspendLayout();
             pnlButtons.SuspendLayout();
@@ -65,12 +67,14 @@
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
-            tlpMain.Size = new Size(348, 214);
+            tlpMain.Size = new Size(348, 246);
             tlpMain.TabIndex = 0;
             // 
             // pnlField
             // 
             pnlField.BackColor = SystemColors.Control;
+            pnlField.Controls.Add(txbDomain);
+            pnlField.Controls.Add(lblDomain);
             pnlField.Controls.Add(txbPassword);
             pnlField.Controls.Add(lblPassword);
             pnlField.Controls.Add(txbUser);
@@ -81,7 +85,7 @@
             pnlField.Location = new Point(15, 15);
             pnlField.Margin = new Padding(0);
             pnlField.Name = "pnlField";
-            pnlField.Size = new Size(318, 126);
+            pnlField.Size = new Size(318, 150);
             pnlField.TabIndex = 0;
             // 
             // txbPassword
@@ -140,9 +144,9 @@
             pnlButtons.Controls.Add(btnCancel);
             pnlButtons.Controls.Add(btnUpdate);
             pnlButtons.Dock = DockStyle.Fill;
-            pnlButtons.Location = new Point(18, 159);
+            pnlButtons.Location = new Point(18, 183);
             pnlButtons.Name = "pnlButtons";
-            pnlButtons.Size = new Size(312, 36);
+            pnlButtons.Size = new Size(312, 44);
             pnlButtons.TabIndex = 1;
             // 
             // btnCancel
@@ -169,12 +173,28 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // lblDomain
+            // 
+            lblDomain.AutoSize = true;
+            lblDomain.Location = new Point(43, 112);
+            lblDomain.Name = "lblDomain";
+            lblDomain.Size = new Size(49, 15);
+            lblDomain.TabIndex = 6;
+            lblDomain.Text = "Domain";
+            // 
+            // txbDomain
+            // 
+            txbDomain.Location = new Point(101, 108);
+            txbDomain.Name = "txbDomain";
+            txbDomain.Size = new Size(167, 23);
+            txbDomain.TabIndex = 7;
+            // 
             // FrmEmailSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(348, 214);
+            ClientSize = new Size(348, 246);
             Controls.Add(tlpMain);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmEmailSettings";
@@ -203,5 +223,7 @@
         private Button btnCancel;
         private Button btnUpdate;
         private ErrorProvider errorProvider1;
+        private TextBox txbDomain;
+        private Label lblDomain;
     }
 }

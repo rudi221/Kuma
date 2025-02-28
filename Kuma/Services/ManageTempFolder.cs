@@ -1,6 +1,8 @@
-﻿public static class ManageTempFolder
+﻿using Kuma.Services;
+
+public class ManageTempFolder : PathManager
 {
-    private static readonly string tempPath = "C:\\ProgramData\\Kuma\\Temp";
+    private static readonly string tempPath = _programTempFolder;
 
     /// <summary>
     /// kopiert eine Datei in den temporären Ordner.
@@ -84,7 +86,6 @@
             Console.WriteLine($"Fehler beim Zugriff auf den Ordner: {ex.Message}");
         }
     }
-
 }
 
 

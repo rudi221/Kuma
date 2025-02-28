@@ -6,7 +6,7 @@ namespace Kuma.Forms
     {
         #region Deklarationen
         private readonly Validator _validator;
-        private readonly string _iniFilePath = @"C:\ProgramData\Kuma\settings.ini";
+        private readonly string _iniFilePath = Path.Combine(PathManager.GetProgramPath(), "settings.ini");
         #endregion
 
         #region Konstruktor

@@ -69,7 +69,7 @@
             btnSendData.Text = "Versenden";
             btnSendData.TextImageRelation = TextImageRelation.ImageAboveText;
             btnSendData.UseVisualStyleBackColor = true;
-            btnSendData.Click += btnSendData_Click;
+            btnSendData.Click += async (sender, e) => await btnSendData_ClickAsync(sender, e);
             // 
             // btnDeleteArtistFile
             // 

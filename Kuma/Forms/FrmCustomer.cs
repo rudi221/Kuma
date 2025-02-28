@@ -35,8 +35,6 @@ namespace Kuma.Forms
         }
         #endregion
 
-        #region Event Handlers for Buttons
-        #endregion
 
         #region Methoden
 

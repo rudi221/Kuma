@@ -107,22 +107,6 @@ namespace Kuma.Controls
         }
 
 
-        private bool GetClientData(out AddressData addressData)
-        {
-            addressData = null;
-
-            if (filladress == 1)
-            {
-
-                filladress = 0;
-                return true;
-            }
-
-            return false;
-        }
-
-
-
 
         #endregion
 

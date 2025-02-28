@@ -2,11 +2,9 @@
 {
     public class FileName
     {
-        private string file;
-
-        public FileName(string file)
+        public FileName(string? file)
         {
-            this.File = file;
+            File = file;
         }
 
         public string? File { get; set; }

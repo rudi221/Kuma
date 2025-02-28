@@ -1,23 +1,23 @@
-﻿using Kuma.Utilities;
-
-namespace Kuma.Services
+﻿namespace Kuma.Services
 {
-    public class FileManager : BaseManager
+    public class FileManager : PathManager
     {
         public string ArtistFolder { get; set; }
         public string TourFolder { get; set; }
         public string Category { get; set; }
+        public string FileName { get; set; }
 
-        public FileManager(string artistFolder, string tourFolder, string category)
-            : base(Path.GetFileName(tourFolder), category)
+        public FileManager(string fileName, string artistFolder, string tourFolder, string category)
+            : base()
         {
             ArtistFolder = artistFolder;
             TourFolder = tourFolder;
             Category = category;
+            FileName = fileName;
         }
 
         public FileManager(string artistFolder, string tourFolder)
-        : base(artistFolder, tourFolder)
+        : base()
         {
             ArtistFolder = artistFolder;
             TourFolder = tourFolder;
@@ -25,71 +25,44 @@ namespace Kuma.Services
 
 
 
-        public string GetTargetFilePath()
+
+        public static string GetUniqueFileName(string directoryPath, string fileName, string category)
         {
-            return Path.Combine(TourFolder, Path.GetFileName(ArtistFolder));
-        }
-
-        public string GetArtistPath()
-        {
-
-            return Path.Combine(TourFolder, Path.GetFileName(ArtistFolder));
-
-
-        }
-
-        public string GetNewFileName()
-        {
-            string fileName = Path.GetFileName(ArtistFolder);
-            return Category + Path.GetExtension(fileName);
-        }
-
-        public string GetNewFilePath()
-        {
-            return Path.Combine(TourFolder, GetNewFileName());
-        }
-
-        public string GetUniqueFilePath()
-        {
-            string newFileName = FileHelper.GetUniqueFileName(TourFolder, GetNewFileName());
-            return Path.Combine(TourFolder, newFileName);
-        }
-
-        public void MoveArtistFile()
-        {
-            string targetFilePath = GetUniqueFilePath();
-
-            try
+            // Überprüfen, ob das Verzeichnis existiert
+            if (!Directory.Exists(directoryPath))
             {
-                File.Move(ArtistFolder, targetFilePath);
-                Console.WriteLine($"Datei erfolgreich verschoben: {targetFilePath}");
+                Directory.CreateDirectory(directoryPath);
             }
-            catch (Exception ex)
+
+            string getFileName = Path.GetFileName(fileName);
+
+            string originalFileName = category + Path.GetExtension(getFileName);
+
+            // Ursprünglicher Dateiname
+            string filePath = Path.Combine(directoryPath, originalFileName);
+
+            // Überprüfen, ob die Datei bereits existiert
+            if (File.Exists(filePath))
             {
-                Console.WriteLine($"Fehler beim Verschieben der Datei: {ex.Message}");
+                int counter = 1;
+                string fileExtension = Path.GetExtension(originalFileName);
+                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(originalFileName);
+
+                // Dateiname ändern, bis ein einzigartiger Name gefunden wird
+                while (File.Exists(filePath))
+                {
+                    filePath = Path.Combine(directoryPath, $"{fileNameWithoutExtension}_{counter}{fileExtension}");
+                    counter++;
+                }
             }
+
+            // Pfad der umbenannten Datei zurückgeben
+            return filePath;
         }
-
-        public void CopyArtistFile()
-        {
-            string targetFilePath = GetUniqueFilePath();
-
-            try
-            {
-                File.Copy(ArtistFolder, targetFilePath);
-                Console.WriteLine($"Datei erfolgreich verschoben: {targetFilePath}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Fehler beim Verschieben der Datei: {ex.Message}");
-            }
-        }
-
-
 
         public void DeleteArtistFile(string fileName)
         {
-            string filePath = Path.Combine(_tourFolderPath, fileName);
+            string filePath = Path.Combine(FolderManager.GetArtistTourPath(ArtistFolder, TourFolder), fileName);
 
             try
             {
@@ -110,6 +83,27 @@ namespace Kuma.Services
         }
 
 
+        public static void DeleteAllArtistFile(string folderPath)
+        {
+            try
+            {
+                // Holen Sie alle Dateien im angegebenen Ordner
+                string[] files = Directory.GetFiles(folderPath);
+
+                // Löschen Sie jede Datei
+                foreach (string file in files)
+                {
+                    File.Delete(file);
+                    Console.WriteLine($"{file} wurde gelöscht.");
+                }
+
+                Console.WriteLine("Alle Dateien wurden erfolgreich gelöscht.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler: {ex.Message}");
+            }
+        }
 
     }
 }
