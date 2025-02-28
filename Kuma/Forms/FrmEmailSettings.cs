@@ -56,16 +56,19 @@ namespace Kuma.Forms
             return _validator.ValidateTextBox(txbServer, "Dieses Feld darf nicht leer sein.") &&
                    _validator.ValidateTextBox(txbUser, "Dieses Feld darf nicht leer sein.") &&
                    _validator.ValidateTextBox(txbPassword, "Dieses Feld darf nicht leer sein.") &&
-                   _validator.ValidateTextBox(txbDomain, "Dieses Feld darf nicht leer sein.");
+                   _validator.ValidateTextBox(txbDomain, "Dieses Feld darf nicht leer sein.") &&
+                   _validator.ValidateTextBox(txbEmail, "Dieses Feld darf nicht leer sein.");
         }
 
         private void UpdateSettings()
         {
             var ini = new IniFile(IniFilePath);
             ini.Write("Email", "Server", txbServer.Text);
+            ini.Write("Email", "Port", txbPort.Text);
             ini.Write("Email", "Benutzer", txbUser.Text);
             ini.Write("Email", "Passwort", txbPassword.Text);
             ini.Write("Email", "Domain", txbDomain.Text);
+            ini.Write("Email", "Email", txbEmail.Text);
         }
 
         private void LoadSettings()
@@ -74,9 +77,11 @@ namespace Kuma.Forms
             var emailSection = ini.ReadSection("Email");
 
             if (emailSection.TryGetValue("Server", out var server)) txbServer.Text = server;
+            if (emailSection.TryGetValue("Port", out var port)) txbPort.Text = port;
             if (emailSection.TryGetValue("Benutzer", out var user)) txbUser.Text = user;
             if (emailSection.TryGetValue("Passwort", out var password)) txbPassword.Text = password;
             if (emailSection.TryGetValue("Domain", out var domain)) txbDomain.Text = domain;
+            if (emailSection.TryGetValue("Email", out var email)) txbEmail.Text = email;
         }
 
 

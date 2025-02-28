@@ -78,11 +78,12 @@ namespace Kuma.Forms
                 // Holt den Verzeichnispfad des Künstlers und der Tour
                 string directoryPath = FolderManager.GetArtistTourPath(_artistName, _tourName);
 
+
                 // Generiert einen eindeutigen Dateinamen
                 string uniqueFileName = FileManager.GetUniqueFileName(directoryPath, fileName, cbxCategory.Text);
 
                 // Verschiebt die Datei an den neuen Pfad
-                File.Move(fileName, uniqueFileName);
+                File.Copy(fileName, uniqueFileName);
 
                 // Aktualisiert die Tourdaten
                 _artistInfo = new TourData(_artistId, _artistName, _tourName);

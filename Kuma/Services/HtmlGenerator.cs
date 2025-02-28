@@ -5,7 +5,7 @@ namespace Kuma.Services
 
     public static class HtmlGenerator
     {
-        public static string GenerateHtml(List<ArtistFileList>? currentFileList, TourData tourData)
+        public static string GenerateHtml(List<ArtistFileList>? currentFileList, TourData tourData, string downloadLink)
         {
             string htmlHeader = $@"
             <!DOCTYPE html>
@@ -33,7 +33,7 @@ namespace Kuma.Services
                     <div class='row'>
                         <div class='col-12'>
                             <div class='col-12 mt-5'>
-                                <h3>Ihre Informationen zu {tourData.ArtistName}</h3>
+                                <h3>Ihre Informationen zu {tourData.ArtistName} {tourData.TourName}</h3>
                             </div>
                         </div>
                     </div>
@@ -57,8 +57,8 @@ namespace Kuma.Services
                 <tr>
                     <td style='width: 90%;'>{currentFile.Category}</td>
                     <td style='width: 10%;'>
-                        <a href='{currentFile.FileName}' download>
-                            <button type='button' class='btn btn-sm btn-success'>Download</button>
+                        <a href='{downloadLink}{currentFile.FileName}' download>
+                            <button type='button' class='btn sm btn-success'>Download</button>
                         </a>
                     </td>
                 </tr>";

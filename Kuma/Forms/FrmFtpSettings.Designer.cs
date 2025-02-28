@@ -44,6 +44,8 @@
             btnCancel = new Button();
             btnUpdate = new Button();
             errorProvider1 = new ErrorProvider(components);
+            textBox1 = new TextBox();
+            label1 = new Label();
             tlpMain.SuspendLayout();
             pnlField.SuspendLayout();
             pnlButtons.SuspendLayout();
@@ -68,12 +70,14 @@
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
-            tlpMain.Size = new Size(349, 255);
+            tlpMain.Size = new Size(349, 284);
             tlpMain.TabIndex = 1;
             // 
             // pnlField
             // 
             pnlField.BackColor = SystemColors.Control;
+            pnlField.Controls.Add(textBox1);
+            pnlField.Controls.Add(label1);
             pnlField.Controls.Add(txbFolder);
             pnlField.Controls.Add(lblFolder);
             pnlField.Controls.Add(txbPassword);
@@ -86,12 +90,12 @@
             pnlField.Location = new Point(15, 15);
             pnlField.Margin = new Padding(0);
             pnlField.Name = "pnlField";
-            pnlField.Size = new Size(319, 168);
+            pnlField.Size = new Size(319, 191);
             pnlField.TabIndex = 0;
             // 
             // txbFolder
             // 
-            txbFolder.Location = new Point(108, 114);
+            txbFolder.Location = new Point(108, 144);
             txbFolder.Name = "txbFolder";
             txbFolder.Size = new Size(169, 23);
             txbFolder.TabIndex = 7;
@@ -99,7 +103,7 @@
             // lblFolder
             // 
             lblFolder.AutoSize = true;
-            lblFolder.Location = new Point(33, 117);
+            lblFolder.Location = new Point(33, 147);
             lblFolder.Name = "lblFolder";
             lblFolder.Size = new Size(65, 15);
             lblFolder.TabIndex = 6;
@@ -107,7 +111,7 @@
             // 
             // txbPassword
             // 
-            txbPassword.Location = new Point(108, 85);
+            txbPassword.Location = new Point(108, 115);
             txbPassword.Name = "txbPassword";
             txbPassword.PasswordChar = '*';
             txbPassword.Size = new Size(169, 23);
@@ -116,7 +120,7 @@
             // lblPassword
             // 
             lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(33, 88);
+            lblPassword.Location = new Point(33, 118);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(54, 15);
             lblPassword.TabIndex = 4;
@@ -124,7 +128,7 @@
             // 
             // txbUser
             // 
-            txbUser.Location = new Point(108, 56);
+            txbUser.Location = new Point(108, 86);
             txbUser.Name = "txbUser";
             txbUser.Size = new Size(169, 23);
             txbUser.TabIndex = 3;
@@ -132,7 +136,7 @@
             // lblUser
             // 
             lblUser.AutoSize = true;
-            lblUser.Location = new Point(33, 59);
+            lblUser.Location = new Point(33, 89);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(53, 15);
             lblUser.TabIndex = 2;
@@ -161,9 +165,9 @@
             pnlButtons.Controls.Add(btnCancel);
             pnlButtons.Controls.Add(btnUpdate);
             pnlButtons.Dock = DockStyle.Fill;
-            pnlButtons.Location = new Point(18, 201);
+            pnlButtons.Location = new Point(18, 224);
             pnlButtons.Name = "pnlButtons";
-            pnlButtons.Size = new Size(313, 36);
+            pnlButtons.Size = new Size(313, 41);
             pnlButtons.TabIndex = 1;
             // 
             // btnCancel
@@ -190,11 +194,27 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(108, 57);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(169, 23);
+            textBox1.TabIndex = 9;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(33, 60);
+            label1.Name = "label1";
+            label1.Size = new Size(39, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Server";
+            // 
             // FrmFtpSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(349, 255);
+            ClientSize = new Size(349, 284);
             Controls.Add(tlpMain);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmFtpSettings";
@@ -225,5 +245,7 @@
         private Button btnCancel;
         private Button btnUpdate;
         private ErrorProvider errorProvider1;
+        private TextBox textBox1;
+        private Label label1;
     }
 }

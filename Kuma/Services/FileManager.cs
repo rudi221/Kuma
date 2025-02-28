@@ -28,25 +28,20 @@
 
         public static string GetUniqueFileName(string directoryPath, string fileName, string category)
         {
-            // Überprüfen, ob das Verzeichnis existiert
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
 
             string getFileName = Path.GetFileName(fileName);
 
             string originalFileName = category + Path.GetExtension(getFileName);
 
             // Ursprünglicher Dateiname
-            string filePath = Path.Combine(directoryPath, originalFileName);
+            string filePath = Path.Combine(directoryPath, GetWebLink.GetLink(originalFileName));
 
             // Überprüfen, ob die Datei bereits existiert
             if (File.Exists(filePath))
             {
                 int counter = 1;
                 string fileExtension = Path.GetExtension(originalFileName);
-                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(originalFileName);
+                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(GetWebLink.GetLink(originalFileName));
 
                 // Dateiname ändern, bis ein einzigartiger Name gefunden wird
                 while (File.Exists(filePath))

@@ -8,6 +8,9 @@ public class EmailManager
     private readonly int _smtpPort;
     private readonly string _smtpUser;
     private readonly string _smtpPass;
+    private readonly string _smtpEmail;
+    private readonly string _userDomain;
+
 
     private readonly string _iniFilePath = Path.Combine(PathManager.GetProgramPath(), "settings.ini");
 
@@ -21,7 +24,8 @@ public class EmailManager
         _smtpServer = emailSection.ContainsKey("Server") ? emailSection["Server"] : throw new ArgumentException("Server fehlt in der INI-Datei");
         _smtpUser = emailSection.ContainsKey("Benutzer") ? emailSection["Benutzer"] : throw new ArgumentException("Benutzer fehlt in der INI-Datei");
         _smtpPass = emailSection.ContainsKey("Passwort") ? emailSection["Passwort"] : throw new ArgumentException("Passwort fehlt in der INI-Datei");
-        _smtpPort = 587;
+        _smtpEmail = emailSection.ContainsKey("Email") ? emailSection["Email"] : throw new ArgumentException("Email fehlt in der INI-Datei");
+        _userDomain = emailSection.ContainsKey("Domain") ? emailSection["Domain"] : throw new ArgumentException("Domain fehlt in der INI-Datei");
 
     }
 
@@ -32,8 +36,8 @@ public class EmailManager
         try
         {
             var message = new MimeMessage();
-            //  message.From.Add(new MailboxAddress("Rüdiger", "info@dreibach.de"));
-            message.From.Add(new MailboxAddress("Ihr Team von UD Promotion", "info@dreibach.de"));
+
+            message.From.Add(new MailboxAddress("Ihr Team von UD Promotion", _smtpEmail));
             message.To.Add(new MailboxAddress(customerName, customerEmail));
 
             if (!string.IsNullOrEmpty(secondMail))
@@ -47,13 +51,15 @@ public class EmailManager
             string templatePath = Path.Combine(PathManager.GetProgramPath(), "Template", "email_template.html");
             string template = File.ReadAllText(templatePath);
 
-            string link = GetWebLink.GetLink($"http://www.udpromo.de/kuma/{artistName}/{tourName}/{filename}");
+            string link = GetWebLink.GetLink($"{artistName}/{tourName}/{filename}");
+            string webLink = Path.Combine(_userDomain, "kuma", link);
 
             // Ersetzen Sie die Platzhalter
             template = template.Replace("{artist}", artistName);
+            template = template.Replace("{tourname}", tourName);
             template = template.Replace("{kunde}", customerName);
             template = template.Replace("{message}", messageContent);
-            template = template.Replace("{link}", link);
+            template = template.Replace("{link}", webLink);
 
             var bodyBuilder = new BodyBuilder
             {

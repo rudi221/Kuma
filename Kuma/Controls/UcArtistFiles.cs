@@ -22,6 +22,7 @@ namespace Kuma.Controls
         private TourData currentTourData;
         private string sourcePath;
         private readonly List<ArtistFileList> artistFilesList = new();
+        private static int counter = 0;
 
         #endregion
 
@@ -142,6 +143,7 @@ namespace Kuma.Controls
         /// </summary>
         /// <param name="files">Ein Array mit Dateipfaden.</param>
         private void LoadFilesIntoListView(string[] files)
+
         {
             foreach (var file in files)
             {
@@ -155,9 +157,11 @@ namespace Kuma.Controls
                 }
 
                 ltvArtistFiles.Items.Add(item);
-                artistFilesList.Add(new ArtistFileList(FileHelper.GetCleanFileName(file), file));
+
             }
         }
+
+
 
         #endregion
 
@@ -189,7 +193,7 @@ namespace Kuma.Controls
             if (e.NewValue == CheckState.Checked)
             {
                 // Fügt die Datei zur Liste hinzu, wenn sie markiert wird.
-                artistFilesList.Add(new ArtistFileList(FileHelper.GetCleanFileName(fileName), fileName));
+                artistFilesList.Add(new ArtistFileList(FileHelper.GetCleanFileName(fileName), GetWebLink.GetLink(fileName)));
                 ManageTempFolder.CopyToTemp(sourcePath);
             }
             else

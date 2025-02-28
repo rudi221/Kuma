@@ -27,7 +27,7 @@ public class FtpUploader
     {
 
         // string newDirectory = $"{ftpFolder}/{tourData.ArtistName}/{tourData.TourName}";
-        string newDirectory = $"{ftpFolder}/{tourData.ArtistName}/{tourData.TourName}";
+        string newDirectory = GetWebLink.GetLink($"{ftpFolder}/{tourData.ArtistName}/{tourData.TourName}");
         string subFolder = $"{tourData.ArtistName}/{tourData.TourName}";
 
 
@@ -53,7 +53,8 @@ public class FtpUploader
             foreach (string filePath in localFilePaths)
             {
                 string remoteFilePath = GetWebLink.GetLink($"{ftpFolder}/{subFolder}/{System.IO.Path.GetFileName(filePath)}");
-                await Task.Run(() => client.UploadFile(filePath, remoteFilePath));
+                string localFilePath = Path.Combine(PathManager.GetArtistTourPath(tourData.ArtistName, tourData.TourName), filePath);
+                await Task.Run(() => client.UploadFile(localFilePath, remoteFilePath));
                 Console.WriteLine($"{filePath} erfolgreich hochgeladen nach {remoteFilePath}.");
                 progressBar.Invoke((Action)(() => progressBar.Value++));
             }

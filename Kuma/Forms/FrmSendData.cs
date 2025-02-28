@@ -31,8 +31,8 @@ namespace Kuma.Forms
 
             string uniqueId = Guid.NewGuid().ToString();
             string filename = $"{uniqueId}.html";
-
-            string htmlContent = HtmlGenerator.GenerateHtml(currentFileList, currentTourData);
+            string downloadLink = Path.Combine("https://www.udpromo.de/kuma/", GetWebLink.GetLink($"{currentTourData.ArtistName}/{currentTourData.TourName})/"));
+            string htmlContent = HtmlGenerator.GenerateHtml(currentFileList, currentTourData, downloadLink);
             string filePath = Path.Combine(PathManager.GetArtistTourPath(currentTourData.ArtistName, currentTourData.TourName), filename);
 
             File.WriteAllText(filePath, htmlContent);
@@ -49,6 +49,8 @@ namespace Kuma.Forms
             EmailManager emailManager = new EmailManager();
 
             emailManager.SendEmail(currentTour.Customer.Email, currentTour.TourData.ArtistName, currentTour.TourData.TourName, customerName, txbMessageContent.Text, txbCc.Text, filename);
+
+            Close();
 
         }
 

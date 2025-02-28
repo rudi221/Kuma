@@ -19,7 +19,7 @@ namespace Kuma.Controls
         private UcAddressData ucAddressData;
         private AddressData currentAdressdata;
         private List<ArtistFileList> currentFileList;
-
+        private static int counter = 0;
 
         // Konstruktor  
         public UcMenu()
@@ -147,15 +147,26 @@ namespace Kuma.Controls
 
         private void ShowFileList(List<ArtistFileList> artistFileList)
         {
-
+            counter++;
 
 
             currentFileList = artistFileList;
+
         }
 
+        public static int getCounter()
+        {
+            return counter;
+
+        }
 
         private async Task btnSendData_ClickAsync(object sender, EventArgs e)
+
+
         {
+
+
+
             CustomerTour customerTour = new CustomerTour(currentAdressdata, currentTourData);
 
             if (currentFileList != null && currentFileList.Count > 0)
