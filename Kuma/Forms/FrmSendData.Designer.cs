@@ -32,7 +32,7 @@
             tlpMain = new TableLayoutPanel();
             bnlButtons = new Panel();
             btnSendData = new Button();
-            pnlStatus = new Label();
+            lblStatus = new Label();
             btnCancel = new Button();
             progressBar1 = new ProgressBar();
             pnlArtist = new Panel();
@@ -81,7 +81,7 @@
             // 
             bnlButtons.BackColor = SystemColors.Control;
             bnlButtons.Controls.Add(btnSendData);
-            bnlButtons.Controls.Add(pnlStatus);
+            bnlButtons.Controls.Add(lblStatus);
             bnlButtons.Controls.Add(btnCancel);
             bnlButtons.Controls.Add(progressBar1);
             bnlButtons.Dock = DockStyle.Fill;
@@ -100,14 +100,14 @@
             btnSendData.UseVisualStyleBackColor = true;
             btnSendData.Click += btnSendData_Click;
             // 
-            // pnlStatus
+            // lblStatus
             // 
-            pnlStatus.AutoSize = true;
-            pnlStatus.Location = new Point(372, 20);
-            pnlStatus.Name = "pnlStatus";
-            pnlStatus.Size = new Size(35, 15);
-            pnlStatus.TabIndex = 1;
-            pnlStatus.Text = "Staus";
+            lblStatus.AutoSize = true;
+            lblStatus.Location = new Point(372, 20);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(35, 15);
+            lblStatus.TabIndex = 1;
+            lblStatus.Text = "Staus";
             // 
             // btnCancel
             // 
@@ -144,7 +144,7 @@
             // lblCustomerName
             // 
             lblCustomerName.AutoSize = true;
-            lblCustomerName.Location = new Point(532, 14);
+            lblCustomerName.Location = new Point(534, 18);
             lblCustomerName.Name = "lblCustomerName";
             lblCustomerName.Size = new Size(0, 15);
             lblCustomerName.TabIndex = 5;
@@ -271,7 +271,7 @@
         private TextBox txbMessageContent;
         private TextBox txbCc;
         private Label lblEmail;
-        private Label pnlStatus;
+        private Label lblStatus;
         private ProgressBar progressBar1;
         private Panel pnlArtist;
         private Label lblCustomer;

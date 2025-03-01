@@ -80,6 +80,7 @@
             // 
             // tbxEmail
             // 
+            tbxEmail.BackColor = SystemColors.Window;
             tbxEmail.Location = new Point(84, 118);
             tbxEmail.Name = "tbxEmail";
             tbxEmail.Size = new Size(267, 23);

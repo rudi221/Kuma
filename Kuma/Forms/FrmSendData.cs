@@ -37,19 +37,21 @@ namespace Kuma.Forms
 
             File.WriteAllText(filePath, htmlContent);
             currentFileList.Add(new ArtistFileList("", filePath));
+            lblStatus.Text = "Daten werden gesendet...";
 
             FtpUploader uploader = new FtpUploader();
             List<string> fileNames = currentFileList.Select(file => file.FileName).ToList();
             await uploader.UploadFilesAsync(fileNames, currentTourData, progressBar1);
 
             File.Delete(filePath);
-
+            lblStatus.Text = "Daten wurden erfolgreich gesendet.";
+            lblStatus.Text = "E-Mail wird gesendet...";
             string customerName = currentTour.Customer.Firstname + " " + currentTour.Customer.Lastname;
 
             EmailManager emailManager = new EmailManager();
 
             emailManager.SendEmail(currentTour.Customer.Email, currentTour.TourData.ArtistName, currentTour.TourData.TourName, customerName, txbMessageContent.Text, txbCc.Text, filename);
-
+            lblStatus.Text = "E-Mail wurde erfolgreich gesendet.";
             Close();
 
         }
