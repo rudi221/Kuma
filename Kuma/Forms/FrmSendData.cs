@@ -50,7 +50,7 @@ namespace Kuma.Forms
 
             EmailManager emailManager = new EmailManager();
 
-            emailManager.SendEmail(currentTour.Customer.Email, currentTour.TourData.ArtistName, currentTour.TourData.TourName, customerName, txbMessageContent.Text, txbCc.Text, filename);
+            emailManager.SendEmailAsync(currentTour.Customer.Email, currentTour.TourData.ArtistName, currentTour.TourData.TourName, customerName, txbMessageContent.Text, txbCc.Text, filename);
             lblStatus.Text = "E-Mail wurde erfolgreich gesendet.";
             Close();
 
