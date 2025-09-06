@@ -19,6 +19,7 @@ namespace Kuma
             dbHelper.InitializeDatabase();
             dbHelper.CreateTables();
             dbHelper.CreateTables2();
+            dbHelper.CreateTables3();
         }
     }
 }
