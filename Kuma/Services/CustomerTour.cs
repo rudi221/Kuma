@@ -21,7 +21,7 @@ namespace Kuma.Services
 
         public override string ToString()
         {
-            string fileList = Files.Count > 0 ? string.Join(", ", Files) : "Keine Dateien";
+            string fileList = Files.Count > 0 ? string.Join(", ", Files) : "Keine Dateien hjjjh";
             return $"{Customer} -> {TourData} | Dateien: {fileList}";
         }
     }
