@@ -5,7 +5,7 @@ namespace Kuma
     internal static class Program
     {
         /// <summary>
-        /// Der Haupteinstiegspunkt für die Anwendung.
+        /// Der Haupteinstiegspunkt fÃ¼r die Anwendung.
         /// </summary>
         [STAThread]
         static void Main()
@@ -18,6 +18,7 @@ namespace Kuma
             var dbHelper = new InitializeProgramData();
             dbHelper.InitializeDatabase();
             dbHelper.CreateTables();
+            dbHelper.CreateTables2();
         }
     }
 }
